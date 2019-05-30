@@ -3,7 +3,7 @@ body {
     display: grid;
     grid-template-columns: 15vw 83vw;
     grid-template-rows: auto auto auto;
-    grid-gap: 0.3vw:
+    grid-gap: 0.3vw;
     margin: 0.3vw;
 }
 header {
