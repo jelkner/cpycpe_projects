@@ -1,0 +1,6 @@
+# Ignore files starting with dot or tilde
+.*
+~*
+
+# Except this one, of course! ;-)
+!.gitignore

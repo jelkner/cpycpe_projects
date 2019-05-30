@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Timer</title>
+<style>
+@import url(https://fonts.googleapis.com/css?family=Poppins);
+@import url(cpe_lesson.css);
+</style>
+</head>
+<body>
+
+<header>
+<h2>Circuit Playground Express</h2>
+<h1>Timer</h1>
+<p>By: Niranjan Adhikari<p>
+</header>
+
+<nav>
+<a href="index.html">Introduction</a>
+<a href="getting_started.html">Getting Started</a>
+<a href="timer.html">Timer</a>
+<a href="final_product.html">Final Product</a>
+</nav>
+
+<main>
+<h2>Getting Started</h2>
+<ol>
+  <li>Before we get to the real code, we have to import libraries from
+  Adafruit. Write down the following lines of code.
+  <p><code>import time</code></p>
+  <p><code>from adafruit circuitplayground.express import cpx</code></p>
+  </li>
+  <li>Start by making a variable <code>counter</code>.This variable will help
+  you keep track of time. Since you will be using this variable in a loop,
+  globalize it. It should look like the following image.</li>
+  
+  <p><img src="images/global.PNG" alt="Making and globalizing counter"></p>
+  <li>Since I don't like the default brightness, I lower it 0.01 and to do
+  this I type <p> <code>cpx.pixels.brightness = 0.03</code></p>
+  (This step is not required)</li>
+
+  <li>It should look something like the following image at the end.</li>
+  <p><img src="images/final1.PNG" alt="Final image of getting started"></p>
+</ol>
+</main>
+
+<footer>
+<a href="http://validator.w3.org/check/referer">
+<strong>HTML </strong> Valid!</a>
+<a href="http://jigsaw.w3.org/css-validator/check/referer?profile=css3">
+<strong> CSS </strong> Valid! </a>
+</footer>
+
+</body>
+</html>

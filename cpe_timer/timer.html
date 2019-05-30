@@ -1,0 +1,48 @@
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Timer</title>
+<style>
+@import url(https://fonts.googleapis.com/css?family=Poppins);
+@import url(cpe_lesson.css);
+</style>
+	</head>
+	<body>
+
+		<header>
+			<h2>Circuit Playground Express</h2>
+			<h1>Timer</h1>
+			<p>By: Niranjan Adhikari<p>
+		</header>
+
+		<nav>
+			<a href="index.html">Introduction</a>
+			<a href="getting_started.html">Getting Started</a>
+			<a href="timer.html">Timer</a>
+			<a href="final_product.html">Final Product</a>
+		</nav>
+
+		<main>
+		<h2>Timer</h2>
+		<ol>
+		<li>Since we want the timer to keep on running, I used a while loop. Type in <p><code>while True:</code></p>Writing the above the line keeps on running the loop untill it's False. (which it'll never be)</li>
+		<li>Create a variable named x and set it equal to 0</li>
+		<li>Declare a list named lights with 0 to 9 as your elements. It should look something like this <p><code> lights = [0,1,2,3,4,5,6,7,8,9] </code></p> Each number represents a neopixel	</li>
+		<li>Create a for loop that goes through <code>lights</code> and makes the neopixel light up every second. Then add 1 to the <code>counter</code> so that it keeps track of time. At the end it should look something like this <p><img src="images/snip.PNG" alt="For loop"></li>
+		<li>Now, create an if statement that checks how many seconds have passed by and lights up or plays a sound according to it. I made it so that it changes colors every 10 seconds and plays a small sound. If you wish to do this then check and see if the counter is equal to the amount of seconds you want. When it reaches the respective time, use <code>cpx.pixels.fill((num,num,num))</code> to change the color and to play a sound use <code>cpx.start_tone(num)</code>. Use <code>time.sleep(num)</code> to specify how many seconds you want to play the tone.After that use <code> cpx.stop_tone()</code> to stop the tone. After you do the following, it should look like the following image.</code><p><img src="images/timecheck.PNG"></p> </li>
+		<li>Repeat as much as you want but be sure to add <code>counter = 0</code> so that it reastarts the count. To see an example, click on the Final Product on the navigation bar.</li>
+		</ol>
+		</main>
+
+		<footer>
+			<a href="http://validator.w3.org/check/referer">
+				<strong>HTML </strong> Valid!</a>
+			<a href="http://jigsaw.w3.org/css-validator/check/referer?profile=css3">
+				<strong> CSS </strong> Valid! </a>
+		</footer>
+
+	</body>
+</html>
+
