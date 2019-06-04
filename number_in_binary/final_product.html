@@ -19,11 +19,29 @@
 <nav>
 <a href="index.html">Introduction</a>
 <a href="binary_basics.html">Bits and Binary Basics</a>
-<a href="bit_manipulation.html">Bit Manipulation in Python</a>
+<a href="bit_manipulation.html">Python Bit Manipulation</a>
 <a href="final_product.html">Final Product</a>
 </nav>
 
 <main>
+<pre>
+import time
+from adafruit_circuitplayground.express import cpx
+
+pixels = 10 * [False]
+
+number = 17
+mask = 1
+
+for pixnum in range(9, -1, -1):
+    pixels[pixnum] = bool(number &amp; mask)
+    mask &lt;&lt;= 1
+
+cpx.pixels.brightness = 0.3
+while True:
+    for pos, is_one in enumerate(pixels):
+        cpx.pixels[pos] = (0, 30, 0) if is_one else (30, 0, 0)
+</pre>
 </main>
 
 <footer>

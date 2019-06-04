@@ -6,6 +6,24 @@
 <style>
 @import url(https://fonts.googleapis.com/css?family=Poppins);
 @import url(cpe_lesson.css);
+table {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+th, td {
+    text-align: center;
+    width: var(--width);
+    padding: 4px;
+    border: 1px dotted #444;
+    margin: 0
+}
+#base2 {
+    --width: 10%;
+}
+#base10 {
+    --width: 20%;
+}
 </style>
 </head>
 <body>
@@ -19,11 +37,62 @@
 <nav>
 <a href="index.html">Introduction</a>
 <a href="binary_basics.html">Bits and Binary Basics</a>
-<a href="bit_manipulation.html">Bit Manipulation in Python</a>
+<a href="bit_manipulation.html">Python Bit Manipulation</a>
 <a href="final_product.html">Final Product</a>
 </nav>
 
 <main>
+<section>
+<table id="Base10">
+<tr>
+  <th colspan="10">Decminal Number Place Values</th>
+</tr>
+<tr>
+  <td>10<sup>4</sup></td>
+  <td>10<sup>3</sup></td>
+  <td>10<sup>2</sup></td>
+  <td>10<sup>1</sup></td>
+  <td>10<sup>0</sup></td>
+</tr>
+<tr>
+  <td>10000</td>
+  <td>1000</td>
+  <td>100</td>
+  <td>10</td>
+  <td>1</td>
+</tr>
+</table>
+
+<table id="Base2">
+<tr>
+  <th colspan="10">Binary Number Place Values</th>
+</tr>
+<tr>
+  <td>2<sup>9</sup></td>
+  <td>2<sup>8</sup></td>
+  <td>2<sup>7</sup></td>
+  <td>2<sup>6</sup></td>
+  <td>2<sup>5</sup></td>
+  <td>2<sup>4</sup></td>
+  <td>2<sup>3</sup></td>
+  <td>2<sup>2</sup></td>
+  <td>2<sup>1</sup></td>
+  <td>2<sup>0</sup></td>
+</tr>
+<tr>
+  <td>512</td>
+  <td>256</td>
+  <td>128</td>
+  <td>64</td>
+  <td>32</td>
+  <td>16</td>
+  <td>8</td>
+  <td>4</td>
+  <td>2</td>
+  <td>1</td>
+</tr>
+</table>
+</section>
 </main>
 
 <footer>
