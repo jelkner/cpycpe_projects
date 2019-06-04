@@ -34,14 +34,24 @@
   <li>Start by making a variable <code>counter</code>.This variable will help
   you keep track of time. Since you will be using this variable in a loop,
   globalize it. It should look like the following image.
-  
-  <p><img src="images/global.png" alt="Making and globalizing counter"></p></li>
+  <pre>
+  global counter
+  counter = 0
+  </pre></li>
   <li>Since I don't like the default brightness, I lower it 0.01 and to do
   this I type <p> <code>cpx.pixels.brightness = 0.03</code></p>
   (This step is not required)</li>
 
   <li>It should look something like the following image at the end.
-  <p><img src="images/final1.png" alt="Final image of getting started"></p></li>
+  <pre>
+  import time
+  from adafruit_circuitplayground.express import cpx
+
+  global counter
+
+  counter = 0
+  cpx.pixels.brightness = 0.01
+  </pre></li>
 </ol>
 </main>
 
