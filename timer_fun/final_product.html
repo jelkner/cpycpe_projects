@@ -26,8 +26,57 @@
 
 <main>
 <h2>Final Product</h2>
-<p><img src="images/finalproduct.png" alt="First half of final product">
-<img src="images/finalproduct2.png" alt="Second half of final product">
+<pre>
+import time
+from adafruit_circuitplayground.express import cpx
+
+global counter
+
+counter = 0
+cpx.pixels.brightness = 0.01
+
+while True:
+    x = 0
+    lights = [0,1,2,3,4,5,6,7,8,9]
+    for x in lights:
+        cpx.pixels[x] = (255,0,0)
+        time.sleep(1)
+        counter += 1
+    if counter == 10:
+        cpx.pixels.fill((0,255,0))
+        cpx.start_tone(210)
+        time.sleep(0.1)
+        cpx.stop_tone()
+    elif counter == 20:
+        cpx.pixels.fill((0,0,255))
+        cpx.start_tone(220)
+        time.sleep(0.1)
+        cpx.stop_tone()
+    elif counter == 30:
+        cpx.pixels.fill((0,255,255))
+        cpx.start_tone(230)
+        time.sleep(0.1)
+        cpx.stop_tone()
+    elif counter == 40:
+        cpx.pixels.fill((255,0,255))
+        cpx.start_tone(240)
+        time.sleep(0.1)
+        cpx.stop_tone()
+    elif counter == 50:
+        cpx.pixels.fill((255,255,0))
+        cpx.start_tone(250)
+        time.sleep(0.1)
+        cpx.stop_tone()
+    elif counter == 60:
+        cpx.pixels.fill((102,255,100))
+        cpx.start_tone(260)
+        time.sleep(0.5)
+        cpx.stop_tone()
+        cpx.start_tone(260)
+        time.sleep(0.5)
+        cpx.stop_tone()
+        counter = 0
+</pre>
 </main>
 
 <footer>
