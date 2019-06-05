@@ -6,6 +6,19 @@
 <style>
 @import url(https://fonts.googleapis.com/css?family=Poppins);
 @import url(cpe_lesson.css);
+table {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+th, td {
+    padding: 4px;
+    border: 1px dotted #444;
+    margin: 0
+}
+td:nth-child(3) {
+    width: 35%;
+}
 </style>
 </head>
 <body>
@@ -56,6 +69,67 @@ binary.
 
 <section>
 <h2>Bitwise Operators in Python</h2>
+<p>
+</p>
+<table>
+<tr>
+  <th colspan="3">Python Bitwise Operators <sup>*</sup></th>
+</tr>
+<tr>
+  <th>Operator</th>
+  <th>Description</th>
+  <th>Example</th>
+</tr>
+<tr>
+  <th>&amp;</th>
+  <td>Bitwise AND operator. Result bit is 1 only if it is 1 in both operands.
+  </td>
+  <td><code>13 &amp; 11</code> is <code>9</code> (<code>1101</code> AND
+  <code>1011</code> gives <code>1001</code>)</td>
+</tr>
+<tr>
+  <th>|</th>
+  <td>Bitwise OR operator. Result bit is 1 if it is 1 in either operand.
+  <td><code>13 | 11</code> is <code>15</code> (<code>1101</code> OR
+  <code>1011</code> gives <code>1111</code>)</td>
+</tr>
+<tr>
+  <th>^</th>
+  <td>Bitwise XOR operator. Result bit is 1 if it is 1 in one of the
+  operands, but not both.</td>
+  <td><code>13 ^ 11</code> is <code>6</code> (<code>1101</code> XOR
+  <code>1011</code> gives <code>0110</code>)</td>
+</tr>
+<tr>
+  <th>&lt;&lt;</th>
+  <td>Bitwise Left Shift operator. The first operand is the value to be bit
+  shifted, and the second operand is the number of bits it is shifted, with low
+  order bits filled with 0s.</td> 
+  <td><code>13 &lt;&lt; 1</code> is <code>26</code> (<code>1101</code> left
+  shifted 1 bit gives <code>11010</code>)<br>
+  <code>13 &lt;&lt; 2</code> is <code>52</code> (<code>1101</code> left
+  shifted 2 bit gives <code>110100</code>)
+  </td>
+</tr>
+<tr>
+  <th>&gt;&gt;</th>
+  <td>Bitwise Right Shift operator. The first operand is the value to be bit
+  shifted, and the second operand is the number of bits it is shifted, with low
+  order bits disgarded.</td> 
+  <td><code>50 &gt;&gt; 1</code> is <code>25</code> (<code>110010</code> right 
+  shifted 1 bit gives <code>11001</code>)<br>
+  <code>50 &gt;&gt; 2</code> is <code>12</code> (<code>110010</code> right 
+  shifted 2 bit gives <code>1100</code>)
+  </td>
+</tr>
+
+</table>
+<blockquote>
+<sup>*</sup> The bitwise
+<a href="https://en.wikipedia.org/wiki/Ones%27_complement">one's complement</a>
+operator is intentionally not listed here, since it requires understanding
+how negative integers are stored.
+</blockquote>
 </section>
 </main>
 
