@@ -27,22 +27,20 @@
 <pre>
 from adafruit_circuitplayground.express import cpx
 
-RED = (30, 0, 0)
-GREEN = (0, 30, 0)
+ZERO = (30, 0, 0)   # Set 0 bits to red
+ONE = (0, 30, 0)    # Set 1 bits to green
+NUMBER = 42         # The decimal number being converted to binary
 
-pixels = 10 * [False]
-
-number = 17
-mask = 1
-
-for pixnum in range(9, -1, -1):
-    pixels[pixnum] = bool(number &amp; mask)
-    mask &lt;&lt;= 1
+# Create a list of boolean values (True or False) using the bitwise and (&amp;)
+# of the NUMBER to be converted and the power of 2 represented by that pixel.
+pixels = [bool(NUMBER &amp; 2**i) for i in range(10)]
 
 cpx.pixels.brightness = 0.3
+
 while True:
+    # Set pixel at each pos to green if it is_one or red if not
     for pos, is_one in enumerate(pixels):
-        cpx.pixels[pos] = GREEN if is_one else RED 
+        cpx.pixels[pos] = ONE if is_one else ZERO
 </pre>
 </main>
 
