@@ -6,6 +6,23 @@
 <style>
 @import url(https://fonts.googleapis.com/css?family=Poppins);
 @import url(cpe_lesson.css);
+table {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+th, td {
+    text-align: center;
+    padding: 4px;
+    border: 1px dotted #444;
+    margin: 0
+}
+#base2 th, #base2 td {
+    width: 10%;
+}
+#base10 th, #base10 td {
+    width: 20%;
+}
 </style>
 </head>
 <body>
@@ -18,12 +35,114 @@
     
 <nav>
 <a href="index.html">Introduction</a>
-<a href="binary_basics.html">Bits and Binary Basics</a>
-<a href="bit_manipulation.html">Bit Manipulation in Python</a>
+<a href="binary_basics.html">Binary Basics</a>
+<a href="bit_operators.html">Python Bit Operators</a>
 <a href="final_product.html">Final Product</a>
 </nav>
 
 <main>
+<section>
+<h2>Decimal Numbers</h2>
+<p>
+We humans use a <a href="https://en.wikipedia.org/wiki/Decimal">decimal</a>
+numbers system in which number values from 0 to 9 are represented by unique
+characters and <a href="https://en.wikipedia.org/wiki/Positional_notation">
+positional notation</a> reuses these characters to represent all whole numbers
+larger than 9.
+</p><p>
+The following table shows the place values of decimal numbers.
+</p>
+<table id="Base10">
+<tr>
+  <th colspan="5">Decminal Number Place Values</th>
+</tr>
+<tr>
+  <td>10<sup>4</sup></td>
+  <td>10<sup>3</sup></td>
+  <td>10<sup>2</sup></td>
+  <td>10<sup>1</sup></td>
+  <td>10<sup>0</sup></td>
+</tr>
+<tr>
+  <td>10000</td>
+  <td>1000</td>
+  <td>100</td>
+  <td>10</td>
+  <td>1</td>
+</tr>
+</table>
+<p>
+Using this system, the number written as <code>4275</code> means
+<code>4 x 1000 + 2 x 100 + 7 x 10 + 5 x 1</code>.
+</p>
+</section>
+
+<section>
+<h2>Binary Numbers</h2>
+<p>
+Computers, for reasons that stem primarily from the concerns of
+<a href="https://en.wikipedia.org/wiki/Electrical_engineering">electrical
+engineering</a>, store numbers using a
+<a href="https://en.wikipedia.org/wiki/Binary_number">binary</a>, or
+<b>base-2</b> number system.  In the binary number system, there are only two
+digits, <code>0</code> and <code>1</code>, and numbers are represented using a
+positional notation of powers of two.
+</p><p>
+The table below shows the first 10 place values of binary numbers.
+</p>
+<table id="Base2">
+<tr>
+  <th colspan="10">Binary Number Place Values</th>
+</tr>
+<tr>
+  <td>2<sup>9</sup></td>
+  <td>2<sup>8</sup></td>
+  <td>2<sup>7</sup></td>
+  <td>2<sup>6</sup></td>
+  <td>2<sup>5</sup></td>
+  <td>2<sup>4</sup></td>
+  <td>2<sup>3</sup></td>
+  <td>2<sup>2</sup></td>
+  <td>2<sup>1</sup></td>
+  <td>2<sup>0</sup></td>
+</tr>
+<tr>
+  <td>512</td>
+  <td>256</td>
+  <td>128</td>
+  <td>64</td>
+  <td>32</td>
+  <td>16</td>
+  <td>8</td>
+  <td>4</td>
+  <td>2</td>
+  <td>1</td>
+</tr>
+</table>
+<p>
+There was a <a href="https://en.wikipedia.org/wiki/ThinkGeek">ThinkGeek</a>
+<a href="images/binary_people_t-shirt.jpg">t-shirt</a> that read, <q>There are
+10 types of people in the world: Those who understand binary and those who
+don't.</q> The joke is that <code>10<sub>2</sub></code> in binary is the
+number 2.
+</p><p>
+Let's look at a few examples to give you an idea of how the binary number
+system works.
+</p>
+<ul>
+<li><code>4</code> in decimal is <code>100</code> in binary.</li>
+<li><code>5</code> in decimal is <code>101</code> (4 + 1) in binary.</li>
+<li><code>34</code> in decimal is <code>100010</code>
+(32 + 2) in binary.</li>
+<li><code>15</code> in decimal is <code>1111</code> (8 + 4 + 2 + 1) in
+binary.</li>
+</ul>
+<p>
+There are lots of resources available online to help you better understand
+binary numbers, and if you want to get what this project is doing you are
+encouraged to pause now and look at some of them.
+</p>
+</section>
 </main>
 
 <footer>
