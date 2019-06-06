@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Display a Number in Binary with Neopixels</title>
+<style>
+@import url(https://fonts.googleapis.com/css?family=Poppins);
+@import url(cpe_lesson.css);
+pre {
+    margin-left: 2em;
+}
+</style>
+</head>
+<body>
+
+<header>
+<h2>Circuit Playground Express</h2>
+<h1>Display a Number in Binary with Neopixels</h1>
+<p>By: Jeffrey Elkner<p>
+</header>
+    
+<nav>
+<a href="index.html">Introduction</a>
+<a href="binary_basics.html">Binary Basics</a>
+<a href="bit_operators.html">Python Bit Operators</a>
+<a href="boolean_bits.html">Booleans for Bits</a>
+<a href="variations.html">Variations</a>
+<a href="cpe_neopixels.html">CPE NeoPixels</a>
+<a href="final_product.html">Final Product</a>
+</nav>
+
+<main>
+<section>
+<h2>Python's Conditional Expression</h2>
+<p>
+Python has a <b>conditional expression</b> that evaluates to one of two
+values depending on a Boolean condition.
+</p>
+<pre>
+&gt;&gt;&gt; condition = True
+&gt;&gt;&gt; result = 'Yes!' if condition else 'No!' 
+</pre>
+<p>
+The variable <code>result</code> will be set to the value <code>'Yes!'</code>
+in this example, since the <code>condition</code> variable is <code>True</code>
+(otherwise it would be <code>'No!'</code>.
+</p><p>
+We can use this with a number to print '1's and '0's for its bits.
+</p>
+<pre>
+&gt;&gt;&gt; NUMBER = 20 
+&gt;&gt;&gt; '1' if NUMBER &amp; 2 ** 0 else '0'
+0
+&gt;&gt;&gt; '1' if NUMBER &amp; 2 ** 1 else '0'
+0
+&gt;&gt;&gt; '1' if NUMBER &amp; 2 ** 2 else '0'
+1
+&gt;&gt;&gt; '1' if NUMBER &amp; 2 ** 3 else '0'
+0
+&gt;&gt;&gt; '1' if NUMBER &amp; 2 ** 4 else '0'
+1
+</pre>
+<p>
+Let's use this to write a little program that prints out the binary digits
+of a number as 1s and 0s. Since our Circuit Playground Express has 10
+NeoPixels, we will change the number of bits to 10.
+</p>
+<pre>
+NUMBER = 937
+bits = '' 
+
+for i in range(10):
+    bits = ('1' if NUMBER &amp; 2 ** i else '0') + bits
+
+print(bits)
+</pre>
+<p>
+Running this program will print out the binary representation of 937, which is
+<code>1110101001</code>.
+</p>
+</section>
+
+<section>
+<h2>List Comprehensions</h2>
+<p>
+<a href="https://docs.python.org/3/tutorial/datastructures.html#list-comprehensions">
+List comprehensions</a> provide a way to build lists from existing sequences
+of values inspired by the
+<a href="https://en.wikipedia.org/wiki/Set-builder_notation">set-builder
+notation</a> in mathematics.
+</p>
+<pre>
+&gt;&gt;&gt; [x ** 2 for x in range(10)]
+[0, 1, 4, 9, 16, 25, 36, 49, 64, 81]
+</pre>
+<p>
+We can use a list comprehension to elegantly create our list of Boolean bit
+values.
+</p>
+<pre>
+&gt;&gt;&gt; [bool(937 &amp; 2 ** i) for i in range(10)]
+[True, False, False, True, False, True, False, True, True, True]
+</pre>
+<p>
+This has the bit in the reverse order for representing the binary number in
+text, but is just what we want for writing it out to NeoPixels.
+</p>
+</section>
+</main>
+
+<footer>
+<a href="http://validator.w3.org/check/referer">
+<strong>HTML </strong> Valid!</a>
+<a href="http://jigsaw.w3.org/css-validator/check/referer?profile=css3">
+<strong> CSS </strong> Valid! </a>
+</footer>
+
+</body>
+</html>

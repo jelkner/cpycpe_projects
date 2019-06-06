@@ -6,6 +6,12 @@
 <style>
 @import url(https://fonts.googleapis.com/css?family=Poppins);
 @import url(cpe_lesson.css);
+p.illustration {
+    text-align: center;
+}
+p.illustration > img {
+    height: 360px;
+}
 </style>
 </head>
 <body>
@@ -27,24 +33,17 @@
 </nav>
 
 <main>
-<pre>
-from adafruit_circuitplayground.express import cpx
-
-ZERO = (30, 0, 0)   # Set 0 bits to red
-ONE = (0, 30, 0)    # Set 1 bits to green
-NUMBER = 42         # The decimal number being converted to binary
-
-# Create a list of boolean values (True or False) using the bitwise and (&amp;)
-# of the NUMBER to be converted and the power of 2 represented by that pixel.
-pixels = [bool(NUMBER &amp; 2 ** i) for i in range(10)]
-
-cpx.pixels.brightness = 0.3
-
-while True:
-    # Set pixel at each pos to green if it is_one or red if not
-    for pos, is_one in enumerate(pixels):
-        cpx.pixels[pos] = ONE if is_one else ZERO
-</pre>
+<section>
+<h2>NeoPixels on the Circuit Playground Express</h2>
+<p>
+The <a href="https://www.adafruit.com/product/3333">Circuit Playground
+Express</a> has 10 programmable
+<a href="https://en.wikipedia.org/wiki/Adafruit_Industries#NeoPixel">
+NeoPixels</a> addressed with 0 through 9 as in the illustration below.
+</p><p class="illustration">
+<img src="https://cdn-learn.adafruit.com/assets/assets/000/034/012/medium800/circuit_playground_neoorder.jpg?1468889969" alt="NeoPixel Number Order">
+</p>
+</section>
 </main>
 
 <footer>
