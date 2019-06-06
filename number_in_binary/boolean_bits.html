@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Display a Number in Binary with Neopixels</title>
+<style>
+@import url(https://fonts.googleapis.com/css?family=Poppins);
+@import url(cpe_lesson.css);
+</style>
+</head>
+<body>
+
+<header>
+<h2>Circuit Playground Express</h2>
+<h1>Display a Number in Binary with Neopixels</h1>
+<p>By: Jeffrey Elkner<p>
+</header>
+    
+<nav>
+<a href="index.html">Introduction</a>
+<a href="binary_basics.html">Binary Basics</a>
+<a href="bit_operators.html">Python Bit Operators</a>
+<a href="boolean_bits.html">Booleans for Bits</a>
+<a href="final_product.html">Final Product</a>
+</nav>
+
+<main>
+<section>
+<h2>Boolean Values</h2>
+<p>
+To be able to represent the individual bits of our number using NeoPixels, we
+need to be able to determine the value (1 or 0) of each bit.
+</p><p>
+The bitwise <code>&amp;</code> operator does this nicely for us. To understand
+how, start a <a href="https://www.python.org/shell">Python shell</a>
+(a.k.a.
+<a href="https://en.wikipedia.org/wiki/Read%E2%80%93eval%E2%80%93print_loop">
+REPL</a>) and experiment with each of the following until you feel you
+understand what is happening:
+</p>
+<ol>
+  <li><p>Powers of two have only a single non-zero bit in binary (revisit
+  <a href="binary_basics.html">Binary Basics</a> if you aren't nodding your
+  head in aware agreement).  The
+  <a href="https://en.wikipedia.org/wiki/Exponentiation">exponentiation</a>
+  operator, <code>**</code>, can be used to generate these values:</p>
+  <pre>
+  &gt;&gt;&gt; 2 ** 0
+  &gt;&gt;&gt; 2 ** 1
+  &gt;&gt;&gt; 2 ** 3
+  &gt;&gt;&gt; 2 ** 6
+  </pre>
+  </li>
+  <li><code>&gt;&gt;&gt; bool(0)</code></li>
+  <li><code>&gt;&gt;&gt; bool(1)</code></li>
+  <li><code>&gt;&gt;&gt; bool(2)</code></li>
+  <li><code>&gt;&gt;&gt; bool(6)</code></li>
+  <li><code>&gt;&gt;&gt; bool(99)</code></li>
+</ol>
+</section>
+</main>
+
+<footer>
+<a href="http://validator.w3.org/check/referer">
+<strong>HTML </strong> Valid!</a>
+<a href="http://jigsaw.w3.org/css-validator/check/referer?profile=css3">
+<strong> CSS </strong> Valid! </a>
+</footer>
+
+</body>
+</html>
