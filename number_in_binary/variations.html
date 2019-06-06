@@ -79,6 +79,33 @@ Running this program will print out the binary representation of 937, which is
 <code>1110101001</code>.
 </p>
 </section>
+
+<section>
+<h2>List Comprehensions</h2>
+<p>
+<a href="https://docs.python.org/3/tutorial/datastructures.html#list-comprehensions">
+List comprehensions</a> provide a way to build lists from existing sequences
+of values inspired by the
+<a href="https://en.wikipedia.org/wiki/Set-builder_notation">set-builder
+notation</a> in mathematics.
+</p>
+<pre>
+&gt;&gt;&gt; [x ** 2 for x in range(10)]
+[0, 1, 4, 9, 16, 25, 36, 49, 64, 81]
+</pre>
+<p>
+We can use a list comprehension to elegantly create our list of Boolean bit
+values.
+</p>
+<pre>
+&gt;&gt;&gt; [bool(937 &amp; 2 ** i) for i in range(10)]
+[True, False, False, True, False, True, False, True, True, True]
+</pre>
+<p>
+This has the bit in the reverse order for representing the binary number in
+text, but is just what we want for writing it out to NeoPixels.
+</p>
+</section>
 </main>
 
 <footer>

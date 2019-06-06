@@ -36,7 +36,7 @@ NUMBER = 42         # The decimal number being converted to binary
 
 # Create a list of boolean values (True or False) using the bitwise and (&amp;)
 # of the NUMBER to be converted and the power of 2 represented by that pixel.
-pixels = [bool(NUMBER &amp; 2**i) for i in range(10)]
+pixels = [bool(NUMBER &amp; 2 ** i) for i in range(10)]
 
 cpx.pixels.brightness = 0.3
 
