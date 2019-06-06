@@ -6,6 +6,9 @@
 <style>
 @import url(https://fonts.googleapis.com/css?family=Poppins);
 @import url(cpe_lesson.css);
+pre {
+    margin-left: 2em;
+}
 </style>
 </head>
 <body>
@@ -28,7 +31,53 @@
 
 <main>
 <section>
-<h2></h2>
+<h2>Python's Conditional Expression</h2>
+<p>
+Python has a <b>conditional expression</b> that evaluates to one of two
+values depending on a Boolean condition.
+</p>
+<pre>
+&gt;&gt;&gt; condition = True
+&gt;&gt;&gt; result = 'Yes!' if condition else 'No!' 
+</pre>
+<p>
+The variable <code>result</code> will be set to the value <code>'Yes!'</code>
+in this example, since the <code>condition</code> variable is <code>True</code>
+(otherwise it would be <code>'No!'</code>.
+</p><p>
+We can use this with a number to print '1's and '0's for its bits.
+</p>
+<pre>
+&gt;&gt;&gt; NUMBER = 20 
+&gt;&gt;&gt; '1' if NUMBER &amp; 2 ** 0 else '0'
+0
+&gt;&gt;&gt; '1' if NUMBER &amp; 2 ** 1 else '0'
+0
+&gt;&gt;&gt; '1' if NUMBER &amp; 2 ** 2 else '0'
+1
+&gt;&gt;&gt; '1' if NUMBER &amp; 2 ** 3 else '0'
+0
+&gt;&gt;&gt; '1' if NUMBER &amp; 2 ** 4 else '0'
+1
+</pre>
+<p>
+Let's use this to write a little program that prints out the binary digits
+of a number as 1s and 0s. Since our Circuit Playground Express has 10
+NeoPixels, we will change the number of bits to 10.
+</p>
+<pre>
+NUMBER = 937
+bits = '' 
+
+for i in range(10):
+    bits = ('1' if NUMBER &amp; 2 ** i else '0') + bits
+
+print(bits)
+</pre>
+<p>
+Running this program will print out the binary representation of 937, which is
+<code>1110101001</code>.
+</p>
 </section>
 </main>
 
