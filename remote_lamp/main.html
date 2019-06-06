@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Remote Lamp</title>
+<style>
+@import url(https://fonts.googleapis.com/css?family=Poppins);
+@import url(cpe_lesson.css);
+</style>
+	</head>
+	<body>
+
+		<header>
+			<h2>Circuit Playground Express</h2>
+			<h1>Remote Lamp</h1>
+			<p>By: Matthew White<p>
+		</header>
+
+		<nav>
+			<a href="index.html">Introduction</a>
+			<a href="getting_started.html">Getting Started</a>
+			<a href="main.html">Main Code</a>
+			<a href="final_product.html">Final Product</a>
+		</nav>
+
+		<main>
+		<h2>Main Code</h2>
+    <ol>
+        <li>Pulse_1 is made to be a button. It equals to the IR pulse Array. Repeat this for every button you want. You get the pulse by having it getting printed when you click a button.
+            <pre>
+            #Array for button pulse, this is the pulse output when the button is pressed          
+            # Inputs are compared against this same array
+            #array.array('H',[x]) must be used for IR pulse arrays when using pulseio
+            #indented to multiple lines so its easier to see
+
+            pulse_1 = array.array('H',[9101,4462,625,535,626,535,627,534,
+            627,533,629,532,619,541,621,540,621,1620,631,1609,621,1619,622,
+            1619.621,1619,622,539,623,1618,622,538,624,537,624,537,625,536,626,
+            1615,626,538,623,534,627,534,628,1613,628,1613,627,1613,628])
+
+            #You will get your number from your own remote. Press the button you want to set to it
+            #and you have it print the number it gets and that will be the number you put here. 
+            #It will be the pulse it puts out. If you know the remote name you can find the pulse it puts out online
+            #Also you will have to do it for every buttons you want to program
+            </pre>
+        </li>
+        <li> Air messes up the infrared siganl being sent from the remote to the playground express and the following code catches that differnece and makes up for it.
+            <pre>
+            #Fuzzy pulse comparison function. Fuzzyness is % error.
+            def fuzzy_pulse_compare(pulse1, pulse2, fuzzyness=1):
+                if len(pulse1) != len(pulse2):
+                    return False
+                for i in range(len(pulse1)):
+                    threshold = int(pulse1[i] * fuzzyness)
+                    if abs(pulse1[i] - pulse2[i]) &gt; threshold:
+                        return False
+                return True
+            </pre>
+            </li>
+            <li>The following code intializes the NeoPixel ring :
+            <pre>
+            #Initializes NeoPixel ring
+            cpx.pixels.brightness = 0.1
+            cpx.pixels.fill((0,0,0))
+            cpx.pixels.show()
+            </pre>
+        </li>
+        <li>Create a <code>while True:</code> loop and write the following line of codes.
+            <pre>
+            #The following lines of code detects the IR pulse
+            #When the button is pressed, send IR pulse
+            #Detection is paused then cleared and resumed after a short pause
+            #This prevents reflected detection of own IR
+
+            while len(pulseIN) &gt;= 50: # our array is 59 bytes so anything shorter ignore
+                pulseIn.pause()
+                #converts pulseIn raw data into useable array
+                detected = array.array('H', [pulseIn[x] for x in range(len(pulseIn))])
+                print(len(pulseIn))
+                print(detected)
+            </pre>
+        </li>
+        <li> Now compare the pulse to see if its in the range of detection.If it is then it will print out which button it received.
+            <pre>
+            if fuzzy_pulse_compare(pulse_1, detected):
+                print('Received correct Button 1 control press!')
+                cpx.pixels.fill(badgeColors[0])
+            
+            if fuzzy_pulse_compare(pulse_2,detected):
+                print('Received correct Button 2 control press!')
+                cpx.pixels.fill(badgeColors[1])
+
+            if fuzzy_pulse_compare(pulse_3,detected):
+                print('Received correct Button 3 control press!')
+                cpx.pixels.fill(badgeColors[2])
+            </pre>
+        </li>
+        <li>The following lines of code makes the loop pause, "reset" and then continue looping
+            <pre>
+            time.sleep(.1)
+            pulseIn.clear()
+            pulseIn.resume()
+            <pre>
+        </li>    
+		</ol>
+		</main>
+
+		<footer>
+			<a href="http://validator.w3.org/check/referer">
+				<strong>HTML </strong> Valid!</a>
+			<a href="http://jigsaw.w3.org/css-validator/check/referer?profile=css3">
+				<strong> CSS </strong> Valid! </a>
+		</footer>
+
+	</body>
+</html>
+
