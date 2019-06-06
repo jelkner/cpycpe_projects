@@ -27,30 +27,30 @@
 		<h2>Getting Started</h2>
 		<ol>
         <li>Below I have listed some libraries we will need for this code:
-            <pre>
-            from adafruit_circuitplayground.express import cpx
-            import board
-            import random
-            inport time
-            import pulseio
-            import array
-            </pre></li>
-            <li>Create a hitKtr variable and set it equal to 0. You will use this variable later in your code</li>
-            <li> This picks what color each button makes
-            <pre>
-            #Choosing the colors
-            badgeColors=[(70,255,0),(255,255,0),(255,70,0),(255,0,0),(0,255,0),
-            (0,0,255),(55,255,0),(0,255,88),(96,55,85)]
+    <pre>
+    from adafruit_circuitplayground.express import cpx
+    import board
+    import random
+    import time
+    import pulseio
+    import array
+    </pre></li>
+    <li>Create a hitKtr variable and set it equal to 0. You will use this variable later in your code</li>
+    <li> This picks what color each button makes
+    <pre>
+    #Choosing the colors
+    badgeColors=[(70,255,0),(255,255,0),(255,70,0),(255,0,0),(0,255,0),
+    (0,0,255),(55,255,0),(0,255,88),(96,55,85)]
 
-            #Create IR input, maximum of 59 bits.
-            pulseIN = pulseio.PulseIn(board.IR_RX, maxlen=59, idle_state=True)
+    #Create IR input, maximum of 59 bits.
+    pulseIN = pulseio.PulseIn(board.IR_RX, maxlen=59, idle_state=True)
 
-            #Clears any artifacts
-            pulseIn.clear()
-            pulseIn.resume()
+    #Clears any artifacts
+    pulseIn.clear()
+    pulseIn.resume()
 
-            #Creates IR output pulse
-            </pre></li>
+    #Creates IR output pulse
+    </pre></li>
 
 
 		</ol>
