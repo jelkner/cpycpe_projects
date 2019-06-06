@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Remote Lamp</title>
+<style>
+@import url(https://fonts.googleapis.com/css?family=Poppins);
+@import url(cpe_lesson.css);
+</style>
+	</head>
+	<body>
+
+		<header>
+			<h2>Circuit Playground Express</h2>
+			<h1>Remote Lamp</h1>
+			<p>By: Matthew White<p>
+		</header>
+
+		<nav>
+			<a href="index.html">Introduction</a>
+			<a href="getting_started.html">Getting Started</a>
+			<a href="main.html">Main code</a>
+			<a href="final_product.html">Final Product</a>
+		</nav>
+
+		<main>
+		<h2>Final Product</h2>
+    <pre>
+    # IR Controlled Lights for the Adafruit Circuit Playground Express
+    # Written for core-electronics.com.au
+    # For use on two Circuit Playgrounds, pressing button A or B on one board
+    # turns on a short light animation on the receiving board.
+    
+   from adafruit_circuitplayground.express import cpx
+   import board
+   import random
+   import time
+   import pulseio
+   import array
+
+   hitKtr = 0
+   badgeColors = [(0,255,0),(255,255,0),(255,70,0),(255,0,0)]
+
+   # Create IR input, maximum of 59 bits.
+   pulseIn = pulseio.PulseIn(board.IR_RX, maxlen=59, idle_state=True)
+   # Clears any artifacts
+   pulseIn.clear()
+   pulseIn.resume()
+
+   # Creates IR output pulse
+   pwm = pulseio.PWMOut(board.IR_TX, frequency=38000, duty_cycle=2 ** 15)
+   pulse = pulseio.PulseOut(pwm)
+
+   # Array for button A pulse, this is the pulse output when the button is pressed
+   # Inputs are compared against this same array
+   # array.array('H', [x]) must be used for IR pulse arrays when using pulseio
+   # indented to multiple lines so its easier to see
+   pulse_A = array.array('H', [9065, 2229, 598, 65535, 9089, 4469, 620, 540, 622,
+   539, 622, 538, 624, 536, 626, 535, 627, 533, 618, 542, 630, 530, 621, 1620, 621,
+   1620, 621, 1619, 622, 1623, 618, 1619, 622, 1618, 623, 538, 624, 1617, 628, 532,
+   626, 1615, 626, 1615, 626, 534, 618, 542, 619, 542, 620, 540, 621, 539, 623, 1618,
+   623, 537, 624])
+   """ 
+   pulse_B = array.array('H', [1000, 3800, 65000, 960, 300, 200, 300, 950, 350, 190,
+   215, 245, 300, 225, 275, 225, 275, 215, 275, 200, 300, 700, 300, 200, 300,
+   700, 300, 1000, 315, 675, 300, 1000, 300, 200, 300, 700, 300, 950, 300,
+   950, 300, 700, 300, 700, 300, 450, 300, 475, 275, 715, 300, 225, 275, 450,
+   300, 450, 300, 1000, 65000])
+   """
+   pulse_B = array.array('H', [9065, 4496, 593, 567, 595, 566,
+   595, 566, 596, 564, 598, 563, 598, 562, 590, 571, 591, 570,
+   602, 1638, 593, 1648, 593, 1648, 593, 1648, 593, 1648, 593,
+   1647, 594, 568, 594, 1646, 595, 1646, 595, 565, 597, 564, 598,
+   1643, 598, 562, 600, 561, 590, 570, 592, 569, 593, 568, 593, 1647,
+   594, 1647, 594, 567, 595])
+
+   # Fuzzy pulse comparison function. Fuzzyness is % error
+   def fuzzy_pulse_compare(pulse1, pulse2, fuzzyness=1):
+      if len(pulse1) != len(pulse2):
+         return False
+      for i in range(len(pulse1)):
+         threshold = int(pulse1[i] * fuzzyness)
+         if abs(pulse1[i] - pulse2[i]) &gt; threshold:
+             return False
+         return True
+
+  # Initializes NeoPixel ring
+  cpx.pixels.brightness= 0.05
+  cpx.pixels.fill((0, 0, 0))
+  cpx.pixels.show()
+
+  def wheel(pos):
+      #Input a value 0 to 255 to get a color value.
+      #The colours are a transition r - g - b - back to r.
+      if pos &lt; 85:
+            return (int(pos*3), int(255 - (pos*3)), 0)
+      elif pos &lt; 170:
+            pos -= 85
+            return (int(255 - (pos*3)), 0, int(pos*3))
+      else:
+            pos -= 170
+            return (0, int(pos*3), int(255 - pos*3))
+      def badgeHit(wait, hitKtr):
+            cpx.pixels.fill(badgeColors[hitKtr])
+            cpx.pixels.show()
+            time.sleep(wait)
+            if (hitKtr &lt; 3):
+                cpx.pixels.fill((0, 0, 0,))
+      
+      #neopixel animation for random white sparkles
+      def sparkles(wait):  # Random sparkles - lights just one LED at a time
+            i = random.randint(0, len(cpx.pixels) - 1)  # Choose random pixel
+            cpx.pixels[i] = ((255, 255, 255))  # Set it to current color
+            cpx.pixels.write()  # Refresh LED states
+            # Set same pixel to "off" color now but DON'T refresh...
+            # it stays on for now...bot this and the next random
+            # pixel will be refreshed on the next pass.
+            cpx.pixels[i] = [0, 0, 0]
+            time.sleep(0.008)  # 8 millisecond delay
+      
+      #NeoPixel animation to create a rotating rainbow
+      def rainbow_cycle(wait):
+            for j in range(30):
+                for i in range(len(cpx.pixels)):
+                    idx = int((i * 256 / len(cpx.pixels)) + j*20)
+                    cpx.pixels[i] = wheel(idx &amp; 255)
+                cpx.pixels.show()
+                time.sleep(wait)
+            cpx.pixels.fill((0, 0, 0,))
+      #serial print once when activated
+      print("IR Activated")
+
+      while True:
+      # when button is pressed, send IR pulse
+      # detection is paused then cleared and resumed after a short pause
+      # this prevents reflected detection of own IR
+            while cpx.button_a:
+                pulseIn.pause()  # pauses IR detection
+                pulse.send(pulse_A)  # sends IR pulse
+                time.sleep(.2)  # wait so pulses dont run together
+                pulseIn.clear()  # clear any detected pulses to remove partial artifacts
+                pulseIn.resume()  # resumes IR detection
+            while cpx.button_b:
+                pulseIn.pause()
+                pulse.send(pulse_B)
+                time.sleep(.2)
+                pulseIn.clear()
+                pulseIn.resume()
+      
+      # Wait for a pulse to be detected of desired length
+            while len(pulseIn) &gt;= 59:  # our array is 59 bytes so anything shorter ignore
+                pulseIn.pause()
+                # converts pulseIn raw data into useable array
+                detected = array.array('H', [pulseIn[x] for x in range(len(pulseIn))])
+                print(len(pulseIn))
+                print(detected)
+                                          
+      # Got a pulse, now compare against stored pulse_A and pulse_B
+            if fuzzy_pulse_compare(pulse_A, detected):
+                print('Received correct Button A control press!')
+                t_end = time.monotonic() + 2  # saves time 2 seconds in the future
+                while time.monotonic() &lt; t_end: # plays sparkels until time is up
+                    sparkles(.001)
+                hitKtr = 0
+                cpx.pixels.fill((0, 0, 0,))
+                
+            if fuzzy_pulse_compare(pulse_B, detected):
+                print('Received correct Button B control press!')
+                t_end = time.monotonic() + 2
+                while time.monotonic() &lt; t_end:
+                    badgeHit(.001, hitKtr)
+                hitKtr = hitKtr + 1
+            
+            time.sleep(.1)
+            pulseIn.clear()
+            pulseIn.resume()
+    </pre>
+    </main>
+
+		<footer>
+			<a href="http://validator.w3.org/check/referer">
+          <strong>HTML </strong> Valid!</a>
+			<a href="http://jigsaw.w3.org/css-validator/check/referer?profile=css3">
+				<strong> CSS </strong> Valid! </a>
+		</footer>
+
+	</body>
+</html>
+
