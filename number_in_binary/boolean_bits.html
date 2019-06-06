@@ -6,6 +6,9 @@
 <style>
 @import url(https://fonts.googleapis.com/css?family=Poppins);
 @import url(cpe_lesson.css);
+pre {
+    margin-left: 2em;
+}
 </style>
 </head>
 <body>
@@ -26,37 +29,150 @@
 
 <main>
 <section>
-<h2>Boolean Values</h2>
+<h2>Boolean Values in Python</h2>
 <p>
-To be able to represent the individual bits of our number using NeoPixels, we
-need to be able to determine the value (1 or 0) of each bit.
+A <b>Boolean value</b> is one of either <code>True</code> or <code>False</code>.
+A <a href="https://en.wikipedia.org/wiki/Boolean_expression">Boolean
+expression</a> is any expression that evaluates to a Boolean value.
+</p>
+<p>
+Python's
+<a href="https://docs.python.org/3/library/stdtypes.html#boolean-operations-and-or-not">
+logical operators</a> (<code>and</code>, <code>or</code>, <code>not</code>) and
+<a href="https://docs.python.org/3/library/stdtypes.html#comparisons">
+comparison operators</a> (<code>&lt;</code>, <code>&lt;=</code>,
+<code>&gt;</code>, <code>&gt;=</code>, <code>==</code>, <code>!=</code>) return 
+<a href="https://docs.python.org/3/library/stdtypes.html#boolean-values">
+Boolean values</a> (<code>True</code> or <code>False</code>) and so form
+Boolean expressions.
 </p><p>
-The bitwise <code>&amp;</code> operator does this nicely for us. To understand
-how, start a <a href="https://www.python.org/shell">Python shell</a>
+As usual with Python, one of the best ways to understand new parts of the
+language is to start a <a href="https://www.python.org/shell">Python shell</a>
 (a.k.a.
 <a href="https://en.wikipedia.org/wiki/Read%E2%80%93eval%E2%80%93print_loop">
-REPL</a>) and experiment with each of the following until you feel you
-understand what is happening:
+REPL</a>) and experiment until you feel you understand what is happening.
+</p><p>
+Try these:
 </p>
-<ol>
-  <li><p>Powers of two have only a single non-zero bit in binary (revisit
-  <a href="binary_basics.html">Binary Basics</a> if you aren't nodding your
-  head in aware agreement).  The
-  <a href="https://en.wikipedia.org/wiki/Exponentiation">exponentiation</a>
-  operator, <code>**</code>, can be used to generate these values:</p>
-  <pre>
-  &gt;&gt;&gt; 2 ** 0
-  &gt;&gt;&gt; 2 ** 1
-  &gt;&gt;&gt; 2 ** 3
-  &gt;&gt;&gt; 2 ** 6
-  </pre>
-  </li>
-  <li><code>&gt;&gt;&gt; bool(0)</code></li>
-  <li><code>&gt;&gt;&gt; bool(1)</code></li>
-  <li><code>&gt;&gt;&gt; bool(2)</code></li>
-  <li><code>&gt;&gt;&gt; bool(6)</code></li>
-  <li><code>&gt;&gt;&gt; bool(99)</code></li>
-</ol>
+<pre>
+&gt;&gt;&gt; True and False
+&gt;&gt;&gt; True or False
+&gt;&gt;&gt; 4 &gt; 3
+&gt;&gt;&gt; 4 != 2 * 2
+&gt;&gt;&gt; not 4 
+</pre>
+<p>
+That last one may have caught you be surprise. Why does <code>not 4</code>
+return <code>False</code>?  In Python, all values have a <q>truthy</q>
+quality, which means they can be used by themselves in places requiring a
+Boolean value. Python's built-in <code>bool()</code> function converts any
+Python value into <code>True</code> or <code>False</code>.
+</p><p>
+Try these, and others you make up yourself until understand what is happening:
+</p>
+<pre>
+&gt;&gt;&gt; bool(0) 
+&gt;&gt;&gt; bool(5) 
+&gt;&gt;&gt; bool('NeoPixel') 
+&gt;&gt;&gt; bool('') 
+&gt;&gt;&gt; bool([]) 
+&gt;&gt;&gt; bool([1, 2]) 
+</pre>
+<p>
+If you come up with something like, <q>Zero and empty things evaluate to
+<code>False</code>, and non-zero and non-empty things evaluate to
+<code>True</code></q>, you're doing well.
+</p>
+</section>
+
+<section>
+<h2>Booleans for Bits</h2>
+<p>
+To be able to represent the individual bits of our number using NeoPixels, we
+need to be able to determine the value (1 or 0) of each bit.  The bitwise
+<code>&amp;</code> operator does this nicely for us.
+</p><p>
+To understand how, run each of the following in a REPL:
+</p>
+<pre>
+&gt;&gt;&gt; 2 ** 0
+&gt;&gt;&gt; 2 ** 1
+&gt;&gt;&gt; 2 ** 2
+&gt;&gt;&gt; 2 ** 3
+&gt;&gt;&gt; 2 ** 4
+&gt;&gt;&gt; 2 ** 5
+&gt;&gt;&gt; 2 ** 6
+&gt;&gt;&gt; 2 ** 9
+</pre>
+<p>
+Write down the binary representation of each result.  You should notice that
+powers of two have only a single non-zero bit in binary
+(revisit <a href="binary_basics.html">Binary Basics</a> if you aren't nodding
+your head in aware agreement).
+</p><p>
+We can make use of this fact to create a
+<a href="https://en.wikipedia.org/wiki/Mask_(computing)">bitmask</a> by taking
+a power of 2 and using the bitwise <code>&amp;</code> operator to determine the
+value of the corresponding bit in our number.
+</p><p>
+Let's look at an example. The number 21 is <code>10101</code> in binary, so
+</p>
+<pre>
+&gt;&gt;&gt; 21 &amp; 2 ** 0
+1
+&gt;&gt;&gt; 21 &amp; 2 ** 1
+0
+&gt;&gt;&gt; 21 &amp; 2 ** 2
+4
+&gt;&gt;&gt; 21 &amp; 2 ** 3
+0
+&gt;&gt;&gt; 21 &amp; 2 ** 4
+16
+</pre>
+<p>
+Think about why we are getting either <code>0</code> when there is a zero in
+the corresponding bit of our original number, or the same number as the power
+of two we are using as the mask when there is a one there.
+</p><p>
+Since we really want to know only if the bit we are looking at is one or zero,
+it is more readable to store it as a <code>True</code> or <code>False</code>
+using the <code>bool()</code> function.
+</p>
+<pre>
+&gt;&gt;&gt; bool(21 &amp; 2 ** 0)
+True
+&gt;&gt;&gt; bool(21 &amp; 2 ** 1)
+False
+&gt;&gt;&gt; bool(21 &amp; 2 ** 2)
+True
+&gt;&gt;&gt; bool(21 &amp; 2 ** 3)
+False
+&gt;&gt;&gt; bool(21 &amp; 2 ** 4)
+True
+</pre>
+<p>
+Finally, let's put this logic in a loop and store the results in a list.
+</p>
+<pre>
+NUMBER = 20
+bits = []
+
+for i in range(5):
+    bits.append(bool(NUMBER &amp; 2 ** i))
+
+bits.reverse()
+print(bits)
+</pre>
+<p>
+The output from this program will be
+</p>
+<pre>[True, False, True, False, False]</pre>
+<p>
+You should trace its execution to understand each step of the process.  You
+should then be able to explain why it was necessary to use
+<code>bits.reverse()</code> if we want the bits in the same order as we would
+write them in binary.
+</p>
 </section>
 </main>
 
