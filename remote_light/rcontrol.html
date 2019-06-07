@@ -58,7 +58,12 @@
     decoder = adafruit_irremote.GenericDecode()
 </pre>
 <p>
-    
+    We’re going to determine the pulse we want to use, since each button produces a different IR 
+    pulse. Adafruit has a really good resource: <a 
+    href="https://learn.adafruit.com/ir-sensor/circuitpython">IR Sensor: Circuit Python</a> that is 
+    useful. But to take all the extra work out of it we can just use 255, 2, 255, 0 as our pulse, which 
+    maps to volume down. Let’s define that in out code, putting it just below our previous code:
+    *code*
 </p>
 </main>
 
