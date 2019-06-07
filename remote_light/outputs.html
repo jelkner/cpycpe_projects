@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Remote Control Light Switch</title>
+<style>
+@import url(https://fonts.googleapis.com/css?family=Poppins);
+@import url(cpe_lesson.css);
+</style>
+</head>
+<body>
+
+<header>
+<h2>Circuit Playground Express</h2>
+<h1>Remote Control Light Switch</h1>
+<p>By: Rafa Gould and Abby Dhakal<p>
+</header>
+    
+<nav>
+    <a href="index.html">Introduction</a>
+    <a href="outputs.html">Outputs</a>
+    <a href="relays.html">Relays</a>
+</nav>
+
+<main>
+<h2>Outputs</h2>
+<p>
+  In order to control our relay, we need to be able to get an output from our 
+  board. I’ll explain why we need an output from our board to <a href=relays.html>control our 
+  relay</a> in the future. 
+</p>
+
+<h2>The Code</h2>
+<p>
+    To get an output from the Circuit Playground Express we, of course, need to code it! 
+    The code for this is simple. You just need to import “board” and “digitalio”. Board 
+    allows you to access the outputs and Digital IO you control the outputs. We can 
+    import them like any other library in python. 
+</p>
+<pre>
+  import board
+  import digitalio
+</pre>
+<p>
+    Now we need to assign the board IO as a variable, so we can call it easily. Let's use 
+    relay. On the Circuit Python Express there seem to be few digital ports, digital ports 
+    are important because they exist in binary unlike analog ports which exist in a range. This 
+    makes them harder to control. However the IO port A1 can also be called D12, so we're going 
+    to use D12 as out IO port.
+</p>
+<pre>
+    relay = digitalio.DigitalInOut(board.D12)
+</pre>
+<p>
+  The Circuit Python Express is really cool because it can use ports and chech for both input and 
+  output, however in this case we just need the output, not any input so we're going to establish 
+  it as such.
+</p>
+<pre>
+    relay.direction = digitalio.Direction.OUTPUT
+</pre>
+<p>
+  In order to have our relay off at the start we're just going to set the value to False, so there is 
+  no output from D12.
+</p>
+<pre>
+    relay.value = False
+</pre>
+
+<h2>Product</h2>
+<p>
+  In case the lesson was a little difficult to follow here's where we're at right now!
+</p>
+<pre>
+    import board
+    import digitalio
+
+    relay = digitalio.DigitalInOut(board.D12)
+    relay.direction = digitalio.Direction.OUTPUT
+    relay.value = False
+</pre>
+
+</main>
+
+<footer>
+<a href="http://validator.w3.org/check/referer">
+<strong>HTML </strong> Valid!</a>
+<a href="http://jigsaw.w3.org/css-validator/check/referer?profile=css3">
+<strong> CSS </strong> Valid! </a>
+</footer>
+
+</body>
+</html>
