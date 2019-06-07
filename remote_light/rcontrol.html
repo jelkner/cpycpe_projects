@@ -51,7 +51,7 @@
 <p>
     Now the button no longer works, but not to fear we’re going to control it with a remote! The 
     following lines of code read the pulses from the remote taken in by the IR sensor, add them 
-    just above the “while True:” loop.        
+    just above the while loop.        
 </p>
 <pre>
     pulsein = pulseio.PulseIn(board.IR_RX, maxlen=120, idle_state=True)
@@ -66,6 +66,11 @@
     previous code:
 <pre>
     voldn = [255, 2, 255, 0]
+</pre>
+    In our while loop we can add some code to read the pulses.
+<pre>
+    pulses = decoder.read_pulses(pulsein)
+    received_code = decoder.decode_bits(pulses, debug=False)
 </pre>
 </p>
 </main>
