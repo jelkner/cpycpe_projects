@@ -74,7 +74,16 @@
 </pre>
     Finally let’s modify our code to turn on and off the relay so instead of the relay being controlled 
     by button A, it can now be controlled by volume down. Replacing “cpx.button_a” with “received_code 
-    == voldn” so your code should look somewhat like this. *code*
+    == voldn” so your code should look somewhat like this.
+</p>
+<pre>
+    if received_code == voldn and relay.value == False:
+        relay.value = True
+    elif received_code == voldn and relay.value == True:
+        relay.value = False
+</pre>
+<p>
+    
 </p>
 </main>
 
