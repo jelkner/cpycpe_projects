@@ -63,6 +63,23 @@
     completed the challenge, but we promised a remote control light switch, so now we have to work on 
     that!
 </p>
+
+<h2>Final Product</h2>
+<pre>
+    from adafruit_circuitplayground.express import cpx
+    import board
+    import digitalio
+    
+    relay = digitalio.DigitalInOut(board.D12)
+    relay.direction = digitalio.Direction.OUTPUT
+    relay.value = False
+    
+    while True:
+        if cpx.button_a relay.value == False:
+            relay.value = True
+        elif cpx.button_a and relay.value == True:
+            relay.value = False
+</pre>
 </main>
 
 <footer>
