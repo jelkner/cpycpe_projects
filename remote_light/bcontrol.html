@@ -25,7 +25,25 @@
 
 <main>
 <h2>Button Control</h2>
-
+<p>
+    We want to produce a minimum viable product before we go all out with the remote let’s start 
+    by triggering the relay with a button, this will be really easy. Let’s start up by importing 
+    the CPX library so we can use the buttons:
+    *code*
+    Now let’s add an endless loop, we’re going to do this using:
+    *code*
+    Now inside of our loop let’s code for turing on the relay using button A. 
+    *code*
+    If we press button A the relay will turn on. But how do we turn this off? Using button B to 
+    turn the relay off would be an inefficient use of buttons so instead we can use button A as 
+    a toggle switch, by adding a condition that the relay.value must be True to turn it off or 
+    must be False to turn in on.
+    *code*
+    Now if you plug something into the extension cord and press button A. It should turn on! You’ve 
+    completed the challenge, but we promised a remote control light switch, so now we have to work on 
+    that!
+    
+</p>
 </main>
 
 <footer>
