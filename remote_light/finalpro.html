@@ -27,6 +27,34 @@
 
 <main>
 <h2>Final Product</h2>
+<pre>
+import board
+import digitalio
+import pulseio
+import adafruit_irremote
+        
+relay = digitalio.DigitalInOut(board.D12)
+relay.direction = digitalio.Direction.OUTPUT
+relay.value = False
+        
+pulsein = pulseio.PulseIn(board.IR_RX, maxlen=120, idle_state=True)
+decoder = adafruit_irremote.GenericDecode()
+voldn = [255, 2, 255, 0]
+        
+while True:
+    pulses = decoder.read_pulses(pulsein)
+    try:
+        received_code = decoder.decode_bits(pulses, debug=False)
+    except adafruit_irremote.IRNECRepeatException:
+        continue
+    except adafruit_irremote.IRDecodeException as e:
+        continue
+        
+    if received_code == voldn and relay.value == False:
+        relay.value = True
+    elif received_code == voldn and relay.value == True:
+        relay.value = False
+</pre>
 </main>
 
 <footer>
