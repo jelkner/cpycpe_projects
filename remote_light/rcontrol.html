@@ -25,7 +25,7 @@
 </nav>
 
 <main>
-<h2>Remote Control</h2>
+<h2>Remote Control Library</h2>
 <p>
     To control things by the remote we need to dowload the <a 
     href="https://github.com/adafruit/Adafruit_CircuitPython_IRRemote" 
@@ -38,6 +38,25 @@
     <li>Place the library inside of lib</li>
 </ol>
 <img src="images/library.gif" alt="Gif of these steps" width=75%>
+
+<h2>Setting Up the Controller</h2>
+<p>
+    Starting off we’re going to replace our <pre>from adafruit_circuitplayground.express import cpx</pre> 
+    with the following:
+</p>
+<pre>
+    import pulseio
+    import adafruit_irremote
+</pre>
+<p>
+    Now the button no longer works, but not to fear we’re going to control it with a remote! The 
+    following lines of code read the pulses from the remote taken in by the IR sensor, add them 
+    just above the “while True:” loop.        
+</p>
+<pre>
+    pulsein = pulseio.PulseIn(board.IR_RX, maxlen=120, idle_state=True)
+    decoder = adafruit_irremote.GenericDecode()
+</pre>
 </main>
 
 <footer>
