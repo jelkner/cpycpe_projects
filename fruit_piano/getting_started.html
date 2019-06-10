@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Fruit Piano</title>
+<style>
+@import url(https://fonts.googleapis.com/css?family=Poppins);
+@import url(cpe_lesson.css);
+</style>
+	</head>
+	<body>
+
+		<header>
+			<h2>Circuit Playground Express</h2>
+			<h1>Fruit Piano</h1>
+			<p>By: Charles B. Male and Scooter Norton<p>
+		</header>
+    
+		<nav>
+			<a href="index.html">Introduction</a>
+			<a href="getting_started.html">Getting started</a>
+			<a href="capacitive_touch_keys.html">Capacitive Touch Keys</a>
+			<a href="final_product.html">Final Product</a>
+		</nav>
+
+		<main>
+
+		<h2>Getting Started</h2>
+		<ul>
+        <li>The first thing to do is to make sure your device is connected and you are in the "code.py"
+         file. Then import from the Adafruit cpx library, by using the following lines of code:
+         <pre>
+         from adafruit_circuitplayground.express import cpx
+         </pre>
+        </li>
+        <li>The second step is to set up the slide switch on your Circuit Playground Express. You want to 
+            set up the slide switch in order to turn the piano on and off. By switching it left and right. 
+            Use the following code to set up your slide switch:
+            <pre>
+            while True:
+                if cpx.switch:
+                    cpx.pixels.fill((0, 0, 0))
+                    cpx.stop_tone()
+                    continue
+            </pre>
+        </li>
+    </ul>
+    
+		</main>
+
+		<footer>
+			<a href="http://validator.w3.org/check/referer">
+				<strong>HTML </strong> Valid!</a>
+			<a href="http://jigsaw.w3.org/css-validator/check/referer?profile=css3">
+				<strong> CSS </strong> Valid! </a>
+		</footer>
+
+	</body>
+</html>
+
