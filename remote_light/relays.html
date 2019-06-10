@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Remote Control Light Switch</title>
+<style>
+@import url(https://fonts.googleapis.com/css?family=Poppins);
+@import url(cpe_lesson.css);
+</style>
+</head>
+<body>
+
+<header>
+<h2>Circuit Playground Express</h2>
+<h1>Remote Control Light Switch</h1>
+<p>By: Rafa Gould and Abby Dhakal<p>
+</header>
+    
+<nav>
+    <a href="index.html">Introduction</a>
+    <a href="outputs.html">Outputs</a>
+    <a href="relays.html">Relays</a>
+    <a href="bcontrol.html">Button Control</a>
+    <a href="rcontrol.html">Remote Control</a>
+    <a href="finalpro.html">Final Product</a>
+</nav>
+
+<main>
+<h2>How Does a Relay Work</h2>
+<p>
+  The way relays work is actually really easy to understand! Relays are electrically operated switches, 
+  meaning that when a current is passed through the relay it flips a switch and it allows the current 
+  through. We are using a relay to prevent burnout in the Circuit Playground Express board. The 
+  electric grid has a  voltage of 110 volts and that would be damaging to the board if used as an input 
+  the board has a voltage output of 3.3 volts so it wouldn't be enough power out to power much of anything. 
+  Using a relay allows you to circumvent all of those issues.  
+</p>
+
+<h2>Connecting the Relay to the CPX</h2>
+<p>
+  This is how we're going to connect the relay to the Circuit Playground Express (CPX):
+</p>
+<ol>
+  <li>
+    Connect the 3 Female to Female Jumper Wires to all 3 pins on the relay. Keep in mind which pin is for 
+    what: S (control), + (power), and - (ground).
+  </li>
+  <li>
+    Connect the black alligator clip’s male end to the female jumper cable that connects to the - (ground) 
+    pin, in our case, it’s the brown one female jumper cable.
+  </li>
+  <li>
+      Connect the red alligator clip’s male end to the female jumper cable that connects to the + (power) 
+      pin, in our case, it’s the red one female jumper cable.
+  </li>
+  <li>
+      Connect the yellow alligator clip’s male end to the female jumper cable that connects to the S 
+      (control) pin, in our case, it’s the orange one female jumper cable.
+  </li>
+  <li>
+      Now connect the black alligator clip’s alligator side to the GND (ground) IO on the Circuit 
+      Playground Express.
+  </li>
+  <li>
+      Connect the red alligator clip’s alligator side to the 3.3V (power) IO on the Circuit Playground 
+      Express.
+  </li>
+  <li>
+      Connect the yellow alligator clip’s alligator side to the A0 (D12 / control) IO on the Circuit 
+      Playground Express
+  </li>
+</ol>
+<p>
+  If you get lost check out this diagram:
+</p>
+<img src="images/relaycpx.jpeg" alt="Diagram of the Above" width=75%>
+
+<h2>Connecting the Relay to Extension Cord</h2>
+<p>
+  So now we need to hook up our extension cord to the relay, so we can turn it on and off. Because of 
+  the use of high voltage we need to make sure everything possible is disconnected from the wall and 
+  to make sure that at the end there is no exposed wire.
+</p>
+<ol>
+  <li>
+    Cut the extension cord in half.
+  </li>
+  <li>
+    Cut both already cut extension cord parts down the seam, about 1 inch down, so you have two semi 
+    separate wires.
+  </li>
+  <li>
+    Cut partway into the each wire about an quarter inch down the cuts so you can rip the shielding 
+    off the wire, you should now have 4 wires with a little bit of exposed wire.
+  </li>
+  <li>
+    Now using some electrical tape cover shielding just under the exposed wire wrap it all the way around.
+    <br><img src="images/ext4.jpg" alt="Diagram of this step" width=75%>
+  </li>
+  <li>
+    Now connect pairs from each of the opposing halves and wrap electrical tape around each of the pairs 
+    from the opposing halves.
+    <br><img src="images/ext5.jpg" alt="Diagram of this step" width=75%>
+  </li>
+  <li>
+    On one of the halves place the Wire Connector and then twist until it feels tight. Make sure to stop 
+    twisting when it feels tight as to not over twist, over twisting may damage the wires.
+    <br><img src="images/ext6.jpg" alt="Diagram of this step" width=75%>
+  </li>
+</ol>
+<p>
+  We're now ready to put the two exposed wires into the relay.
+</p>
+
+<h2>Putting The Exposed Wire Into The Relay</h2>
+<p>
+  On the relay side, there are 3 terminals, NO, COM, and NC, on the Parallax Relay we are using COM is 
+  unmarked, so you will only see NO and NC. COM is for power input, this is where the power goes into 
+  the relay. NO is the power output for when the relay is powered on, this is where we’ll put our power 
+  output. NC is the power output for when the relay is not powered on, we won’t be plugging anything 
+  into this one. Follow the steps to input the exposed wire into the relay:
+</p>
+<ol>
+  <li>
+    Using a small screwdriver make sure all of the terminals are opened.
+    <br><img src="images/rel1.jpg" alt="Diagram of this step" width=75%>
+  </li>
+  <li>
+    Plug one of the ends into the unmarked COM (middle) power terminal and screw down tight, we recommend 
+    using the outlet end not the plug end of the extension cord, but as this is AC it doesn’t really 
+    matter.
+    <br><img src="images/rel2.jpg" alt="Diagram of this step" width=75%>
+  </li>
+  <li>
+    Plug the other end into the NO marked power terminal and screw down tight and make sure all the 
+    terminals are closed.
+    <br><img src="images/rel3.jpg" alt="Diagram of this step" width=75%>
+  </li>
+</ol>
+<p>
+  Now the relay is all up and running, we just need to write the code to <a href="bcontrol.html">control the 
+    relay</a> and then control the relay with the remote.
+</p>
+</main>
+
+<footer>
+<a href="http://validator.w3.org/check/referer">
+<strong>HTML </strong> Valid!</a>
+<a href="http://jigsaw.w3.org/css-validator/check/referer?profile=css3">
+<strong> CSS </strong> Valid! </a>
+</footer>
+
+</body>
+</html>

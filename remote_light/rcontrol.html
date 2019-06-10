@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Remote Control Light Switch</title>
+<style>
+@import url(https://fonts.googleapis.com/css?family=Poppins);
+@import url(cpe_lesson.css);
+</style>
+</head>
+<body>
+
+<header>
+<h2>Circuit Playground Express</h2>
+<h1>Remote Control Light Switch</h1>
+<p>By: Rafa Gould and Abby Dhakal<p>
+</header>
+    
+<nav>
+    <a href="index.html">Introduction</a>
+    <a href="outputs.html">Outputs</a>
+    <a href="relays.html">Relays</a>
+    <a href="bcontrol.html">Button Control</a>
+    <a href="rcontrol.html">Remote Control</a>
+    <a href="finalpro.html">Final Product</a>
+</nav>
+
+<main>
+<h2>Remote Control Library</h2>
+<p>
+    To control things by the remote we need to dowload the <a 
+    href="https://github.com/adafruit/Adafruit_CircuitPython_IRRemote" 
+    target="_blank">Adafruit IR Remote Library</a> and place it onto our Circuit Playground Express. To
+    do this:
+</p>
+<ol>
+    <li>Download the library from the Adafruit github (using the link above)</li>
+    <li>Create a folder on you Circuit Playground Express called lib</li>
+    <li>Place the library inside of lib</li>
+</ol>
+<img src="images/library.gif" alt="Gif of these steps" width=75%>
+
+<h2>Setting Up the Controller</h2>
+<p>
+    Starting off we’re going to replace our <pre>from adafruit_circuitplayground.express import cpx</pre> 
+    with the following:
+</p>
+<pre>
+    import pulseio
+    import adafruit_irremote
+</pre>
+<p>
+    Now the button no longer works, but not to fear we’re going to control it with a remote! The 
+    following lines of code read the pulses from the remote taken in by the IR sensor, add them 
+    just above the while loop.        
+</p>
+<pre>
+    pulsein = pulseio.PulseIn(board.IR_RX, maxlen=120, idle_state=True)
+    decoder = adafruit_irremote.GenericDecode()
+</pre>
+<p>
+    We’re going to determine the pulse we want to use, since each button produces a different IR 
+    pulse. Adafruit has a really good resource: <a 
+    href="https://learn.adafruit.com/ir-sensor/circuitpython" target="_blank">IR Sensor: Circuit Python</a> 
+    that is useful. But to take all the extra work out of it we can just use 255, 2, 255, 0 as our 
+    pulse, which maps to volume down. Let’s define that in out code, putting it just below our 
+    previous code:
+<pre>
+    voldn = [255, 2, 255, 0]
+</pre>
+    In our while loop we can add some code to read the pulses.
+<pre>
+    pulses = decoder.read_pulses(pulsein)
+    received_code = decoder.decode_bits(pulses, debug=False)
+</pre>
+    Finally let’s modify our code to turn on and off the relay so instead of the relay being controlled 
+    by button A, it can now be controlled by volume down. Replacing “cpx.button_a” with “received_code 
+    == voldn” so your code should look somewhat like this.
+</p>
+<pre>
+    if received_code == voldn and relay.value == False:
+        relay.value = True
+    elif received_code == voldn and relay.value == True:
+        relay.value = False
+</pre>
+<p>
+    Now were up and going right?
+    <br><br>
+    Well... not exactly.
+    <br><br>
+    You may have noticed that you received an error with the “received code” part, but don’t worry these 
+    errors aren’t an issue. The real issue is trying to get them to not keep your code from running. We 
+    can do this by replacing:
+    <pre>
+        received_code = decoder.decode_bits(pulses, debug=False)
+    </pre> 
+    with 
+    <pre>
+        try:
+            received_code = decoder.decode_bits(pulses, debug=False)
+        except adafruit_irremote.IRNECRepeatException:
+            continue
+        except adafruit_irremote.IRDecodeException as e:
+            continue
+    </pre> 
+    This just means that if the CPX encounters these issues, 
+    it will continue as if nothing happened leaving the rest of your code to run. 
+    <br><br>
+    Now we're finally done! 
+    <br><br>
+    If you got a little confused check the <a 
+    href="finalpro.html">Final Product page</a> to see the final code.
+</p>
+</main>
+
+<footer>
+<a href="http://validator.w3.org/check/referer">
+<strong>HTML </strong> Valid!</a>
+<a href="http://jigsaw.w3.org/css-validator/check/referer?profile=css3">
+<strong> CSS </strong> Valid! </a>
+</footer>
+
+</body>
+</html>
