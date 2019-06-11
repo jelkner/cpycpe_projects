@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Fruit Piano</title>
+<style>
+@import url(https://fonts.googleapis.com/css?family=Poppins);
+@import url(cpe_lesson.css);
+</style>
+	</head>
+	<body>
+
+		<header>
+			<h2>Circuit Playground Express</h2>
+			<h1>Fruit Piano</h1>
+			<p>By: Charles B. Male and Scooter Norton<p>
+		</header>
+    
+		<nav>
+			<a href="index.html">Introduction</a>
+			<a href="getting_started.html">Getting started</a>
+			<a href="capacitive_touch_keys.html">Capacitive Touch Keys</a>
+			<a href="final_product.html">Final Product</a>
+		</nav>
+
+		<main>
+
+		<h2>Capacitive Touch Keys</h2>
+		<ul>
+        <li>
+            In order to set up our Piano keys, we need to first locate the touch pads we can use. To do 
+            this, look on your Circuit Playground Express and find a keypad labelled "A1" all the way up
+            to "A7". After you locate your desired touch pads, connect the alligators clips to the touch
+            pads as well as connect you fruit . As shown in the picture below:
+            <p>
+            <img src="alligator_wires.jpg" alt="Alligator wires on the playground express">
+            </p>
+        </li>
+        <li>
+            Since there are only seven capacitive touchpads there is an optional piece of code that creates an 8th tone. This is done by joining A2 and A3 in this certain example but it can be done with any two touch pads. See the following piece of code for reference:
+            <pre>
+            elif cpx.touch_A2 and not cpx.touch_A3:
+                cpx.pixels.fill((0, 0, 15))
+                cpx.start_tone(440)
+            elif cpx.touch_A3 and not cpx.touch_A2:
+                cpx.pixels.fill((0, 0, 15))
+                cpx.start_tone(494)
+            elif cpx.touch_A2 and cpx.touch_A3:
+                cpx.pixels.fill((0, 0, 15))
+                cpx.start_tone(523)
+            </pre>
+            <li>
+                Here is what the code for you capacitive touch pads should look like:
+            <pre>
+            if cpx.touch_A4:
+                cpx.pixels.fill((15, 0, 0))
+                cpx.start_tone(262)
+            elif cpx.touch_A5:
+                cpx.pixels.fill((15, 5, 0))
+                cpx.start_tone(294)
+            elif cpx.touch_A6:
+                cpx.pixels.fill((15, 15, 0))
+                cpx.start_tone(330)
+            elif cpx.touch_A7:
+                cpx.pixels.fill((0, 15, 0))
+                cpx.start_tone(349)
+            elif cpx.touch_A1:
+                cpx.pixels.fill((0, 15, 15))
+                cpx.start_tone(392)
+            elif cpx.touch_A2 and not cpx.touch_A3:
+                cpx.pixels.fill((0, 0, 15))
+                cpx.start_tone(440)
+            elif cpx.touch_A3 and not cpx.touch_A2:
+                cpx.pixels.fill((0, 0, 15))
+                cpx.start_tone(494)
+            elif cpx.touch_A2 and cpx.touch_A3:
+                cpx.pixels.fill((0, 0, 15))
+                cpx.start_tone(523)
+                </pre>
+            </li>
+        </li>
+    </ul>
+    
+		</main>
+
+		<footer>
+			<a href="http://validator.w3.org/check/referer">
+				<strong>HTML </strong> Valid!</a>
+			<a href="http://jigsaw.w3.org/css-validator/check/referer?profile=css3">
+				<strong> CSS </strong> Valid! </a>
+		</footer>
+
+	</body>
+</html>
+

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>GPS Logger</title>
+<style>
+@import url(https://fonts.googleapis.com/css?family=Poppins);
+@import url(cpe_lesson.css);
+</style>
+	</head>
+	<body>
+
+		<header>
+			<h2>Circuit Playground Express</h2>
+			<h1>GPS Logger</h1>
+			<p>By: Dylan Herreda<p>
+		</header>
+    
+		<nav>
+			<a href="index.html">Introduction</a>
+      <a href="materials.html">Materials Required</a>
+			<a href="boot.html">boot.py</a>
+			<a href="datalogger.html">datalogger.py</a>
+      <a href="instructions.html">Instructions</a>
+		</nav>
+
+		<main>
+		<h2>Instructions</h2>
+    <ul>
+    <li>Assemble materials:
+        <ul>    
+        <li>Put both the feather and the GPS on the feather doubler</li>
+        <li>Attach the antenna to the GPS FeatherWing</li>
+        </ul>
+    </li>
+    
+    <li>Put code (datalogger.py) on the feather</li>
+    
+    <li>Boot the feather in write mode (only applicable if you aren't using an adalogger)
+        <ul>
+        <li>Use the code in boot.py to do it, and connect pin to the serial console to verify that data
+            is being collected.</li>
+        </ul>
+    </li>
+    <li>Get data
+        <ul>
+        <li>If you are using an adalogger : 
+            <ul>
+            <li>Connect to a serial console</li>
+            <li>Make the script stop running with CTRL + C</li>
+            <li>Exit the serial console</li>
+            <li>Power down the board by ejecting it and disconnecting the power supply</li>
+            <li>Plug the SD card into your computer and copy the file across</li>
+            </ul>
+        </li>
+
+        <li>If you are using built in storage : 
+            <ul>
+            <li>Connect to a serial console</li>
+            <li>Stop the script with CTRL + C</li>
+            <li>Exit the serial console</li>
+            <li>Copy the file from the board to your computer using terminal 
+                or a graphical file manager</li>
+            </ul>
+        </li>
+        </ul>
+
+    </li>
+    </ul>
+		</main>
+
+		<footer>
+			<a href="http://validator.w3.org/check/referer">
+				<strong>HTML </strong> Valid!</a>
+			<a href="http://jigsaw.w3.org/css-validator/check/referer?profile=css3">
+				<strong> CSS </strong> Valid! </a>
+		</footer>
+
+	</body>
+</html>
+

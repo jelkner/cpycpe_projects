@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>GPS Logger</title>
+<style>
+@import url(https://fonts.googleapis.com/css?family=Poppins);
+@import url(cpe_lesson.css);
+</style>
+	</head>
+	<body>
+
+		<header>
+			<h2>Circuit Playground Express</h2>
+			<h1>GPS Logger</h1>
+			<p>By: Dylan Herreda<p>
+		</header>
+    
+		<nav>
+			<a href="index.html">Introduction</a>
+      <a href="materials.html">Materials Required</a>
+			<a href="boot.html">boot.py</a>
+			<a href="datalogger.html">datalogger.py</a>
+      <a href="instructions.html">Instructions</a>
+		</nav>
+
+		<main>
+		<h2>datalogger.py</h2>
+    <pre>
+    import board
+    import busio
+
+    LOG_FILE = '/gps.txt' #Example for writing to internal path / gps.txt
+
+    LOG_MODE = 'ab'
+
+    RX = board.RX
+    TX = board.TX
+
+    uart = busio.UART(TX, RX, baudrate=9600, timeout=30)
+
+    with open(LOG_FILE, LOG_MODE) as outfile:
+        while True:
+        sentence = uart.readline()
+        print(str(sentence, 'ascii').strip())
+        outfile.write(sentence)
+        outfile.flush()
+    </pre>
+		</main>
+
+		<footer>
+			<a href="http://validator.w3.org/check/referer">
+				<strong>HTML </strong> Valid!</a>
+			<a href="http://jigsaw.w3.org/css-validator/check/referer?profile=css3">
+				<strong> CSS </strong> Valid! </a>
+		</footer>
+
+	</body>
+</html>
+

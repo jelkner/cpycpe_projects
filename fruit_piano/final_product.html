@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Fruit Piano</title>
+<style>
+@import url(https://fonts.googleapis.com/css?family=Poppins);
+@import url(cpe_lesson.css);
+</style>
+	</head>
+	<body>
+
+		<header>
+			<h2>Circuit Playground Express</h2>
+			<h1>Fruit Piano</h1>
+			<p>By: Charles B. Male and Scooter Norton<p>
+		</header>
+    
+		<nav>
+			<a href="index.html">Introduction</a>
+			<a href="getting_started.html">Getting started</a>
+			<a href="capacitive_touch_keys.html">Capacitive Touch Keys</a>
+			<a href="final_product.html">Final Product</a>
+		</nav>
+
+		<main>
+
+		<h2>Final Product</h2>
+    <pre>
+    from adafruit_circuitplayground.express import cpx
+
+    while True:
+        if cpx.switch:
+            cpx.pixels.fill((0, 0, 0))
+            cpx.stop_tone()
+            continue
+        if cpx.touch_A4:
+            cpx.pixels.fill((15, 0, 0))
+            cpx.start_tone(262)
+        elif cpx.touch_A5:
+            cpx.pixels.fill((15, 5, 0))
+            cpx.start_tone(294)
+        elif cpx.touch_A6:
+            cpx.pixels.fill((15, 15, 0))
+            cpx.start_tone(330)
+        elif cpx.touch_A7:
+            cpx.pixels.fill((0, 15, 0))
+            cpx.start_tone(349)
+        elif cpx.touch_A1:
+            cpx.pixels.fill((0, 15, 15))
+            cpx.start_tone(392)
+        elif cpx.touch_A2 and not cpx.touch_A3:
+            cpx.pixels.fill((0, 0, 15))
+            cpx.start_tone(440)
+        elif cpx.touch_A3 and not cpx.touch_A2:
+            cpx.pixels.fill((0, 0, 15))
+            cpx.start_tone(494)
+        elif cpx.touch_A2 and cpx.touch_A3:
+            cpx.pixels.fill((0, 0, 15))
+            cpx.start_tone(523)
+    </pre>
+		</main>
+
+		<footer>
+			<a href="http://validator.w3.org/check/referer">
+				<strong>HTML </strong> Valid!</a>
+			<a href="http://jigsaw.w3.org/css-validator/check/referer?profile=css3">
+				<strong> CSS </strong> Valid! </a>
+		</footer>
+
+	</body>
+</html>
+
