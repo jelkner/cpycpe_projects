@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Mastermind</title>
+<style>
+@import url(https://fonts.googleapis.com/css?family=Poppins);
+@import url(cpe_lesson.css);
+</style>
+	</head>
+	<body>
+
+		<header>
+			<h2>Circuit Playground Express</h2>
+			<h1>Mastermind</h1>
+			<p>By: Oscar Saravia and Conor Edwards<p>
+		</header>
+    
+		<nav>
+			<a href="index.html">Introduction</a>
+			<a href="getting_started.html">Getting started</a>
+			<a href="using_neopixels.html">Defining Functions</a>
+      <a href="game.html">Game</a>
+			<a href="final_product.html">Final Product</a>
+		</nav>
+
+		<main>
+		<h2>Getting Started</h2>
+    <ul>
+    <li>First we have to import all of the modules we need
+    <pre>
+    import board
+    import neopixel
+    import digitalio
+    import time
+    import math
+    import random
+    </pre>
+    </li>
+    <li>Here we define all the buttons to use later
+    <pre>
+    buttona = digitalio.DigitalInOut(board.BUTTON_A)
+    buttona.direction = digitalio.Direction.INPUT
+    buttona.pull = digitalio.Pull.DOWN
+
+    buttonb = digitalio.DigitalInOut(board.BUTTON_B)
+    buttonb.direction = digitalio.Direction.INPUT
+    buttonb.pull = digitalio.Pull.DOWN
+
+    buttonc = digitalio.DigitalInOut(board.BUTTON_A3)
+    buttonc.direction = digitalio.Direction.INPUT
+    buttonc.pull = digitalio.Pull.UP
+    </pre>
+    </li>
+    <li>This is where we'll define our colors
+    <pre>
+    colors = ((255, 0, 0), (255, 255, 0), (0, 128, 0), (0, 255, 255), (0, 0, 255), (255, 0, 255))
+
+    #The 1st is Red, 2nd is Yellow, 3rd is Green, 4th is Light Blue, 5th is Dark Blue, 6th is Pink
+    </pre>
+    </li>
+    </ul>
+    </main>
+		<footer>
+		<a href="http://validator.w3.org/check/referer">
+		<strong>HTML </strong> Valid!</a>
+		<a href="http://jigsaw.w3.org/css-validator/check/referer?profile=css3">
+		<strong> CSS </strong> Valid! </a>
+		</footer>
+
+	</body>
+</html>
+
