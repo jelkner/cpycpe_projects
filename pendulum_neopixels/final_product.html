@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title></title>
+<style>
+@import url(https://fonts.googleapis.com/css?family=Poppins);
+@import url(cpe_lesson.css);
+</style>
+</head>
+<body>
+
+<header>
+<h2>Circuit Playground Express</h2>
+<h1>Pendulum NeoPixels</h1>
+<p>By: Sheereen Khan<p>
+</header>
+
+<nav>
+<a href="index.html">Introduction</a>
+<a href="getting_started.html">Getting Started</a>
+<a href="accelerometer.html">Accelerometer</a>
+<a href="pendulum.html">Pendulum</a>
+<a href="final_product.html">Final Product</a>
+</nav>
+
+<main>
+<h2>Final Product</h2>
+<p>
+Now put the code all together and you should get the pendulum effect and the accelerometer NeoPixels by moving the Circuit Playground around!
+</p>
+<pre>
+#Using the Accelerometer to control the Neopixels
+
+from adafruit_circuitplayground.express import cpx
+import board
+import math
+
+cpx.pixels.fill((0, 0, 0))
+cpx.pixels.show()
+
+pos = 0 # Starting center position of pupil
+increment = 2 * 3.14 / 10 #distance between pixels in radians
+MomentumH = 0 # Horizontal component of pupil rotation inertia
+MomentumV = 0 # Vertical  component of pupil in pixels
+
+#Tuning Constants, these can be changed
+friction = 0.9 # Frictional damping constant. 1.0 is no friction
+swing = 10 # Arbitrary divisor for gravitational force
+gravity = 50 # Arbitrary divisor for lateral acceleration
+halfWidth = 1.25  # Half-Width of pupil in pixels
+Pi = 3.14
+
+while True:
+    x_float, y_float,  z_float = cpx.acceleration #for the accelerometer
+    x = int(x_float) # int makes it easier to understand the numbers
+    y = int(y_float)
+    z = int(z_float)
+
+    # Change modes with slide switch left
+    if cpx.switch:
+        #Print the live accelerometer data
+        print("x, y, z = ", x, " ", y, " ", z)
+        if math.fabs(x) &lt; 3 and y &gt; 3:
+            cpx.pixels[0] = (255, 0, 0)
+            cpx.pixels[9] = (255, 0, 0)
+        elif x &gt; 3 and math.fabs(y) &lt; 3:
+            cpx.pixels[6] = (255, 0, 0)
+            cpx.pixels[7] = (255, 0, 0)
+            cpx.pixels[8] = (255, 0, 0)
+        elif math.fabs(x) &lt; 3 and y &lt; -3:
+            cpx.pixels[4] = (255, 0, 0)
+            cpx.pixels[5] = (255, 0, 0)
+        elif x &lt; -3 and math.fabs(y) &lt; 3:
+            cpx.pixels[1] = (255, 0, 0)
+            cpx.pixels[2] = (255, 0, 0)
+            cpx.pixels[3] = (255, 0, 0)
+        else:
+            cpx.pixels.fill((255, 0, 0))
+            cpx.pixels.show()
+        else:
+            #Calculate the horizontal vertical effect on the virtual pendulum
+            # 'pos' is a pixel address, which is multiplied by the increment to get the radians.
+            TorqueH = math.cos(pos * increment) # Peaks at the top and bottom of the swing
+            TorqueV = math.sin(pos * increment) # Peaks when the pendulum is horizontal
+
+            # Add the incremental acceleration to the existing momentum
+            MomentumH *= friction
+            MomentumV *= friction
+
+            # Calculate the new position
+            pos += MomentumH + MomentumV
+
+            # Handle the wrap-arounds at the top
+            while (round(pos) &lt; -1):
+                pos += 11.0
+            while (round(pos) &gt; 10):
+                pos -= 11.0
+
+            # Now re-compute the display
+            for i range(10):
+                # Compute the distance between the pixel and the center
+                # point of the virtual pendulum
+                diff = i - pos
+                # Light up the nearby cpx.pixels proportional to their proximity to 'pos'
+                if (math.fabs(diff) &lt;= halfwidth):
+                    proximity = halfwidth - math.fabs(diff) * 200
+                    #pick a color based on heading &amp; proximity to 'pos'
+                    cpx.pixels[i] = [int(proximity), 0, 0]
+                else: # all othes are off
+                    cpx.pixels[i] = ((0, 0, 0))
+            cpx.pixels.show()
+
+</pre>
+</main>
+
+<footer>
+<a href="http://validator.w3.org/check/referer">
+<strong>HTML </strong> Valid!</a>
+<a href="http://jigsaw.w3.org/css-validator/check/referer?profile=css3">
+<strong> CSS </strong> Valid! </a>
+</footer>
+
+</body>
+</html>
