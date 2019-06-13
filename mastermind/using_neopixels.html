@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Mastermind</title>
+<style>
+@import url(https://fonts.googleapis.com/css?family=Poppins);
+@import url(cpe_lesson.css);
+</style>
+	</head>
+	<body>
+
+		<header>
+			<h2>Circuit Playground Express</h2>
+			<h1>Mastermind</h1>
+			<p>By: Oscar Saravia and Conor Edwards<p>
+		</header>
+    
+		<nav>
+			<a href="index.html">Introduction</a>
+			<a href="getting_started.html">Getting started</a>
+			<a href="using_neopixels.html">Defining Functions</a>
+      <a href="game.html">Game</a>
+			<a href="final_product.html">Final Product</a>
+		</nav>
+
+		<main>
+		<h2>Defining Functions</h2>
+    <h3>Choosing the Code</h3>
+    <p>
+    <code>choose_code</code> is a function that lets the user input a color sequence. Button A 
+    selects which light is being selected, and Button B cycles the selected light through a list.
+    The part with time monotonic is a timer that makes the selected light flash. Button C return the
+    code
+    <pre>
+    def choose_code():
+        output = [0, 0, 0, 0]
+        selection = 0
+        while True:
+            if buttona.value:
+                time.sleep(0.2)
+                selection += 1
+                if selection &gt; 3:
+                    selection = 0
+            if buttonb.value:
+                time.sleep(0.2)
+                output[selection] += 1
+                if output[selection] &gt; 5:
+                    output[selection] = 0
+            for i in range(4):
+                if i != selection:
+                    led[i] = colors[output[i]]
+            if math.floor(time.monotonic() * 2)) % 2 == 0:
+                led[selection] = colors[output[selection]]
+            else:
+                led[selection] = (0, 0, 0)
+            if not buttonc.value:
+                time.sleep(0.2)
+                return tuple(output)
+    </pre>
+    </p>
+    <h3>Guessing the code</h3>
+    <p><code>score_code</code> takes a master code and a test code and compares them. It returns how
+    many are correct, correct but in the wrong place, and wrong
+    <pre>
+    def score_code(test, master):
+        test = list(test)
+        master = list(master)
+        output = [0, 0, 0, 0]
+        for i in range(4):
+            if test[i] == master[i]:
+                output[i] = 2
+                test[i] = 101
+                master[i] = 102
+        for i in range(4):
+            if test[i] in master:
+                output[i] = 1
+                master[master.index(test[i])] = 103
+                test[i] = 104
+        return output
+    </pre>
+    </p>
+    <h3>Display Score</h3>
+    <p><code>display_score</code> takes the output from <code>score_code</code> and it displays green,
+    blue, and red lights for correct, correct but in the wrong place, and incorrect, respectively</p>
+    <pre>
+    def display_score(score, led):
+        score.sort()
+        for i in range(4):
+            if score[i] == 2:
+                led[i] = (0,255,0)
+            elif score[i] == 1:
+                led[i] = (0, 0, 255)
+            else:
+            led[i] = (200, 0, 0)
+        while True:
+            if not buttonc.value:
+                time.sleep(0.2)
+                break
+    </pre>
+    </p>
+		</main>
+		<footer>
+			<a href="http://validator.w3.org/check/referer">
+				<strong>HTML </strong> Valid!</a>
+			<a href="http://jigsaw.w3.org/css-validator/check/referer?profile=css3">
+				<strong> CSS </strong> Valid! </a>
+		</footer>
+
+	</body>
+</html>
+

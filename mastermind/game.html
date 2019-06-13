@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Mastermind</title>
+<style>
+@import url(https://fonts.googleapis.com/css?family=Poppins);
+@import url(cpe_lesson.css);
+</style>
+	</head>
+	<body>
+
+		<header>
+			<h2>Circuit Playground Express</h2>
+			<h1>Mastermind</h1>
+			<p>By: Oscar Saravia and Conor Edwards<p>
+		</header>
+    
+		<nav>
+			<a href="index.html">Introduction</a>
+			<a href="getting_started.html">Getting started</a>
+			<a href="using_neopixels.html">Defining Functions</a>
+      <a href="game.html">Game</a>
+			<a href="final_product.html">Final Product</a>
+		</nav>
+
+		<main>
+		<h2>The game running</h2>
+    <p>The last while loop is the actual game loop. It gets a master code and then repeatedly gets a
+    test code, scores it against the master, and then displays it. It stops when the codes match.
+    <pre>
+    while True:
+        master_code = choose_code()
+        while True:
+            test_code = choose_code()
+            scored = score_code(test_code, master_code)
+            if scored == [2, 2, 2, 2]:
+                break
+            time.sleep(0.2)
+            display_score(scored, led)
+            time.sleep(0.5)
+    </pre>
+    </p>
+    <h3>DONE!</h3>
+    <p>Now that you're finished you should be able to get to playing with a partner! Thanks for reading our tutorial.
+    </p>
+		</main>
+
+		<footer>
+			<a href="http://validator.w3.org/check/referer">
+				<strong>HTML </strong> Valid!</a>
+			<a href="http://jigsaw.w3.org/css-validator/check/referer?profile=css3">
+				<strong> CSS </strong> Valid! </a>
+		</footer>
+
+	</body>
+</html>
+
