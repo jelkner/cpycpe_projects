@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Pendulum NeoPixels</title>
+<style>
+@import url(https://fonts.googleapis.com/css?family=Poppins);
+@import url(cpe_lesson.css);
+</style>
+</head>
+<body>
+
+<header>
+<h2>Circuit Playground Express</h2>
+<h1>Pendulum NeoPixles</h1>
+<p>By: Sheereen Khan<p>
+</header>
+
+<nav>
+<a href="index.html">Introduction</a>
+<a href="getting_started.html">Getting Started</a>
+<a href="accelerometer.html">Accelerometer</a>
+<a href="pendulum.html">Pendulum</a>
+<a href="final_product.html">Final Product</a>
+</nav>
+
+<main>
+<h2>Accelerometer</h2>
+<ol>
+  <li>
+    <p>This part of the code is when the switch is on the left. It explains the accelerometer with the three variables, x, y, z. This first part of the code reads the accelerometer and introduces the variables.
+    <pre>
+    # Change modes with slide switch left
+    if cpx.switch:
+        #Print the live accelerometer data
+        print("x, y, z = ", x, " ", y, " ", z)
+        if math.fabs(x) &lt; 3 and y &gt; 3:
+            cpx.pixels[0] = (255, 0, 0)
+            cpx.pixels[9] = (255, 0, 0)
+        elif x &gt; 3 and math.fabs(y) &lt; 3:
+            cpx.pixels[6] = (255, 0, 0)
+            cpx.pixels[7] = (255, 0, 0)
+            cpx.pixels[8] = (255, 0, 0)
+        elif math.fabs(x) &lt; 3 and y &lt; -3:
+            cpx.pixels[4] = (255, 0, 0)
+            cpx.pixels[5] = (255, 0, 0)
+        elif x &lt; -3 and math.fabs(y) &lt; 3:
+            cpx.pixels[1] = (255, 0, 0)
+            cpx.pixels[2] = (255, 0, 0)
+            cpx.pixels[3] = (255, 0, 0)
+        else:
+            cpx.pixels.fill((255, 0, 0))
+    </pre>
+  </li>
+  <li>
+    <p> If you need data from one variable, you have to write all three to make the accelerometer work. To understand the output numbers, the floating data points were converted to integers. Converting to integers isn't an essential step, but it does make it easier to understand the values. After this step, compare the x and y-axis to turn on the NeoPixels. </p>
+    <pre>
+    while True:
+        x_float, y_float,  z_float = cpx.acceleration #for the accelerometer
+        x = int(x_float) # int makes it easier to understand the numbers
+        y = int(y_float)
+        z = int(z_float)
+    </pre>
+  </li>
+</ol>
+</main>
+
+<footer>
+<a href="http://validator.w3.org/check/referer">
+<strong>HTML </strong> Valid!</a>
+<a href="http://jigsaw.w3.org/css-validator/check/referer?profile=css3">
+<strong> CSS </strong> Valid! </a>
+</footer>
+
+</body>
+</html>
