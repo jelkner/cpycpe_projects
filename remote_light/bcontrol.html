@@ -77,7 +77,7 @@
     relay.value = False
     
     while True:
-        if cpx.button_a relay.value == False:
+        if cpx.button_a and relay.value == False:
             relay.value = True
         elif cpx.button_a and relay.value == True:
             relay.value = False

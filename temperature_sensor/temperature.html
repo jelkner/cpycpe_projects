@@ -26,7 +26,7 @@
     <li>Before you start, be sure to <code>import time</code> and <code>from adafruit_circuitplayground.express import cpx</code>
     <li>Create a while loop thats run on forever</li>
     <li>Make a variable that stores the temperature value.</li>
-    <li>Create a if and else statement that checks to see if the temperature exceeds a certain value, if it does then change the color of the Playground Express</li>
+    <li>Create an if and else statement that checks to see if the temperature exceeds a certain value, if it does then change the color.</li>
     <li>It should look something like this in the end :
         <pre>
         import time
@@ -34,8 +34,8 @@
 
         while True:
             temperature_value = cpx.temperature
-            cpx.pixels.brightness = 0.01 #Not necessary, I changed it because the default its too bright.
-            if temperature_value &gt; 28: #
+            cpx.pixels.brightness = 0.01 #Not necessary, I changed it because the default is too bright.
+            if temperature_value &gt; 28: # It's measured in celsius. Change the value as you wish, I kept mines room temperature
                 cpx.pixels.fill((255,0,0))
             else:
                 cpx.pixels.fill((0,0,255))
