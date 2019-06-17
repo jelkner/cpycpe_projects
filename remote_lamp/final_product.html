@@ -131,9 +131,9 @@
       print("IR Activated")
 
       while True:
-      # when button is pressed, send IR pulse
-      # detection is paused then cleared and resumed after a short pause
-      # this prevents reflected detection of own IR
+            # when button is pressed, send IR pulse
+            # detection is paused then cleared and resumed after a short pause
+            # this prevents reflected detection of own IR
             while cpx.button_a:
                 pulseIn.pause()  # pauses IR detection
                 pulse.send(pulse_A)  # sends IR pulse
@@ -147,7 +147,7 @@
                 pulseIn.clear()
                 pulseIn.resume()
       
-      # Wait for a pulse to be detected of desired length
+            # Wait for a pulse to be detected of desired length
             while len(pulseIn) &gt;= 59:  # our array is 59 bytes so anything shorter ignore
                 pulseIn.pause()
                 # converts pulseIn raw data into useable array
@@ -155,7 +155,7 @@
                 print(len(pulseIn))
                 print(detected)
                                           
-      # Got a pulse, now compare against stored pulse_A and pulse_B
+            # Got a pulse, now compare against stored pulse_A and pulse_B
             if fuzzy_pulse_compare(pulse_A, detected):
                 print('Received correct Button A control press!')
                 t_end = time.monotonic() + 2  # saves time 2 seconds in the future
