@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Button Crunch</title>
+<style>
+@import url(https://fonts.googleapis.com/css?family=Poppins);
+@import url(cpe_lesson.css);
+</style>
+</head>
+<body>
+
+<header>
+<h2>Circuit Playground Express</h2>
+<h1>Button Crunch</h1>
+<p>By: Abigail Vaughan and Shushantika Barua<p>
+</header>
+
+<nav>
+<a href="index.html">Introduction</a>
+<a href="getting_started.html">Getting Started</a>
+<a href="shortening_code.html">Shortening Intro</a>
+<a href="shortening_code2.html">Shortening Body</a>
+<a href="celebration.html">Celebration</a>
+<a href="final_product.html">Final Product</a>
+</nav>
+
+<main>
+<h2>Celebrate the Ending!</h2>
+<p>We are all done with these cool rounds! Let's make a lightshow to show
+the player they finished!</p>
+<pre>
+RED = (255, 0, 0)
+ORANGE = (255, 127, 0)
+YELLOW = (255, 255, 0)
+GREEN = (0, 255, 0)
+BLUE = (0 ,0, 255)
+PURPLE = (75, 0, 130)
+WHITE = (255, 255, 255)
+OFF = (0, 0, 0)
+</pre>
+<p>We added more variables for colors</p>
+<pre>
+color_list = [RED, ORANGE, YELLOW, GREEN, BLUE, PURPLE, WHITE]
+</pre>
+<p>Then we make a list of all of our colors. This goes directly under our list
+of colors.</p>
+<pre>
+def celebration():
+    while True:
+        for i in range (10):
+            led[i] = color_list[random.randint(0, 5)]
+        if button_a.value:
+            break
+celebration()
+</pre>
+<p>This function called [celebration] is at the very end of our code. Make
+sure to put this after we print the timer so people can enjoy the
+celebration without it adding to their final time.</p>
+<p>This code picks random colors from the list we made for every LED light.</p>
+<p>When [button_a] is pressed the light show ends.</p>
+
+</main>
+
+
+<footer>
+<a href="http://validator.w3.org/check/referer">
+<strong>HTML </strong> Valid!</a>
+<a href="http://jigsaw.w3.org/css-validator/check/referer?profile=css3">
+<strong> CSS </strong> Valid! </a>
+</footer>
+
+</body>
+</html>
