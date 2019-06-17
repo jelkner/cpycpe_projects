@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Button Crunch</title>
+<style>
+@import url(https://fonts.googleapis.com/css?family=Poppins);
+@import url(cpe_lesson.css);
+</style>
+</head>
+<body>
+
+<header>
+<h2>Circuit Playground Express</h2>
+<h1>Button Crunch</h1>
+<p>By: Abigail Vaughan and Shushantika Barua<p>
+</header>
+
+<nav>
+<a href="index.html">Introduction</a>
+<a href="getting_started.html">Getting Started</a>
+<a href="shortening_code.html">Shortening Intro</a>
+<a href="shortening_code2.html">Shortening Body</a>
+<a href="celebration.html">Celebration</a>
+<a href="final_product.html">Final Product</a>
+</nav>
+
+<main>
+<h2>Shortening the Intro</h2>
+<p>Let's get started with shortening our code!</p>
+<pre>
+import time
+import board
+import neopixel
+import digitalio
+import random
+</pre>
+  <p>In order to access and use a lot of the functions of our circuit 
+  playground express, we have to import some modules. [time] is for the
+  timer that records the speed of the player and returns the value at the
+  end of a round. [board] identifies the circuit playground express, we
+  use it for locations and communicating directly with the circuit board.
+  [neopixel] gives us access to manipulate and use the set of 10 LED
+  lights. [digitalio] gives us access to the two buttons on our circuit 
+  playground express.</p>
+<pre>
+led = neopixels.NeoPixel(board.NEOPIXEL, 10) #7
+led.brightness = 0.01  #8
+
+button_b = digitalio.DigitalInOut(board.BUTTON_B) #10
+button_b.direction = digitalio.Direction.INPUT #11
+button_b.pull = digitalio.Pull.Down #12
+
+button_a = digitalio.DigitalInOut(board.BUTTON_A) #14
+butotn_a.direction = digitalio.Direction.INPUT #15
+button_a.pull = digitalio.Pull.DOWN #16
+</pre>
+  <p>Lines and their meanings:</p>
+    <li>Line 7 - This simply states the number of LED lights we will
+    be using and assigning the LED lights to a variable simply names
+    [led]. We are using 10 LED lights for this game.</li>
+    <li>Line 8 - This sets the brightness of the lights. We decided to be
+    chill and set it to a basic setting of [0.01]</li>
+    <li>Line 10 - This is where we access our first button. We are using
+    [BUTTON_B] and we assigned the button to a variable named [button_b]</li>
+    <li>Line 11 - This line states that the button is an input. So we
+    cannot send information to it, we receive information from it.</li>
+    <li>Line 12 - This line states the when the button is pushed, it is on.
+    When the button is not pushed, it is off.</li>
+    <li>Line 14, Line 15, Line 16 - These lines have the same meaning as
+    lines 10, 11, and 12 but instead of using [BUTTON_B] we are using [BUTTON_A].     We assign the line to a variable named [button_a]</li>
+<pre>
+GREEN = (0, 255, 0)
+WHITE = (255, 255, 255)
+OFF = (0, 0, 0)
+</pre>
+    <p>This stuff is fun. Writing all the colors out can get tedious and is not
+    very reader-friendly so we made some more variables. [GREEN] is set to its
+    RGB value of green. [WHITE] is set to the RGB value of white. [OFF] is set
+    to the RGB value of black.</p>
+<pre>
+def Lights_On(pos):
+    for i in range(10):
+        led[i] = OFF
+    for i in range(pos):
+        led[i] = WHITE
+</pre>
+    <p>[pos] is the number of LED you are on.</p>
+    <p>When the variable [Lights_on] receives the number in [pos] it turns the that set number of lights on. Every time [pos] is changed, the LED lights will completely turn off and then turn back on with the new number of lights on.
+</p>
+</main>
+
+<footer>
+<a href="http://validator.w3.org/check/referer">
+<strong>HTML </strong> Valid!</a>
+<a href="http://jigsaw.w3.org/css-validator/check/referer?profile=css3">
+<strong> CSS </strong> Valid! </a>
+</footer>
+
+</body>
+</html>
